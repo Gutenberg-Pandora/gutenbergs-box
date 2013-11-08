@@ -1,0 +1,24 @@
+{
+  "name": "gutenbergs-box",
+  "version": "0.0.0",
+  "description": "A simple implementation of Pandora...only for books.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Gutenberg-Pandora/gutenbergs-box.git"
+  },
+  "keywords": [
+    "pandora",
+    "books",
+    "gutenberg",
+    "recommendation"
+  ],
+  "author": "Gutenberg's Box Team",
+  "license": "GPLv2",
+  "bugs": {
+    "url": "https://github.com/Gutenberg-Pandora/gutenbergs-box/issues"
+  }
+}
