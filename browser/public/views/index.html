@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<head>
+	<title>Gutenberg's Box</title>
+	<link rel="stylesheet" type="text/css" href="index.css">
+</head> 
+<body>
+	<div id = "TopBanner">
+		<table id="banner-table">
+			<tr>
+				<td> <!-- column 1 -->
+					<div id = "BannerName"> 
+						Gutenberg's Box
+					</div>
+				</td>
+				<td> <!-- column 2 -->
+                <div id="UserInfo">
+                    <ul id="UserMenu">
+                      <li><a href="">
+                        Username
+                        <span id="caret" style="font-size: 8pt">
+                            &#9660
+                        </span>
+                        </a>
+                        <ul>
+                            <li><a href="bookshelf.html">Bookshelf</a></li>
+                            <li><a href="">Boxes</a></li>
+                            <li><a href="">Settings</a></li>
+                            <li><a href="">Sign Out</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                </div>
+				</td>
+			</tr>
+			<tr>
+				<td> <!-- column 1 -->
+					<div id = "NewStation"> 
+						Add Box:
+                         <input type="text">
+                         <button type="button" onclick="alert('Add a Box!')">Add</button>
+					</div>
+				</td>
+				<td> <!-- column 2 -->
+					<div id = "Voting"> 
+                        <button id = "inputButton" type="button" onclick="alert('Previous!')"  style="width: 50px; height: 30px">
+                            <img src="Previous.png" width="100%" height="100%"/> 
+                        </button>
+                        <button id = "inputButton" type="button" onclick="alert('Thumbs Up!')"  style="width: 50px; height: 30px">
+                            <img src="ThumbsUp.svg" width="100%" height="100%"/> 
+                        </button>
+                        <button id = "inputButton" type="button" onclick="alert('Thumbs Down!')"  style="width: 50px; height: 30px">
+                            <img src="ThumbsDown.svg" width="100%" height="100%"/> 
+                        </button>
+                        <button id = "inputButton" type="button" onclick="alert('Next!')"  style="width: 50px; height: 30px">
+                            <img src="Next.png" width="100%" height="100%"/> 
+                        </button>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+	<div id="content">
+
+		<div id = "StationName">
+			<span>Current Box Name</span>
+            <button  id ="DeleteStation" type="button" onclick="alert('Delete Station')">Delete Box</button>
+		</div>
+		
+		<table id="actual-table">
+			<tr>
+				<td> <!-- column 1 -->
+                    <div id= "StationColumn">
+                        <h3> Boxes </h3>
+                        <ul id ="StationList">
+                            <li><a href="">Fantasy</a></li>
+                            <li><a href="">Science Fiction</a></li>
+                            <li><a href="">Biography</a></li>
+                            <li><a href="">Ender's Game</a></li>
+                            <li><a href="">The Lord of the Rings: The Fellowship of the Ring</a></li>
+                            <li><a href="">Romance</a></li>
+                        </ul>
+                    </div>
+				</td>
+				<td> <!-- column 2 -->
+                    <div id = "ContentColumn">
+                        <div id  = "BookInfo">
+                            <div id="BookTitle"> Book Title </div>
+                            <div id="Author"> By Author </div>
+                        </div>
+                        <div id = "BookContent">
+                            <p>pasdfafd asdfjasl;kdfj  jalskdjf;laksjdf jaklsdjf;lkasdjf;alksdfj jalksdfj la;ksdjf jkla;jdsflkj.
+                            asdfafd asdfjasl;kdfj  jalskdjf;laksjdf jaklsdjf;lkasdjf;alksdfj jalksdfj la;ksdjf jkla;jdsflkj.
+                            asdfafd asdfjasl;kdfj  jalskdjf;laksjdf jaklsdjf;lkasdjf;alksdfj jalksdfj la;ksdjf jkla;jdsflkj.
+                            asdfafd asdfjasl;kdfj  jalskdjf;laksjdf jaklsdjf;lkasdjf;alksdfj jalksdfj la;ksdjf jkla;jdsflkj.
+                            asdfafd asdfjasl;kdfj  jalskdjf;laksjdf jaklsdjf;lkasdjf;alksdfj jalksdfj la;ksdjf jkla;jdsflkj.
+                            asdfafd asdfjasl;kdfj  jalskdjf;laksjdf jaklsdjf;lkasdjf;alksdfj jalksdfj la;ksdjf jkla;jdsflkj.
+                            asdfafd asdfjasl;kdfj  jalskdjf;laksjdf jaklsdjf;lkasdjf;alksdfj jalksdfj la;ksdjf jkla;jdsflkj.
+                            asdfafd asdfjasl;kdfj  jalskdjf;laksjdf jaklsdjf;lkasdjf;alksdfj jalksdfj la;ksdjf jkla;jdsflkj.
+                            asdfafd asdfjasl;kdfj  jalskdjf;laksjdf jaklsdjf;lkasdjf;alksdfj jalksdfj la;ksdjf jkla;jdsflkj.
+                            asdfafd asdfjasl;kdfj  jalskdjf;laksjdf jaklsdjf;lkasdjf;alksdfj jalksdfj la;ksdjf jkla;jdsflkj.
+                            asdfafd asdfjasl;kdfj  jalskdjf;laksjdf jaklsdjf;lkasdjf;alksdfj jalksdfj la;ksdjf jkla;jdsflkj.
+                            asdfafd asdfjasl;kdfj  jalskdjf;laksjdf jaklsdjf;lkasdjf;alksdfj jalksdfj la;ksdjf jkla;jdsflkj.
+                            asdfafd asdfjasl;kdfj  jalskdjf;laksjdf jaklsdjf;lkasdjf;alksdfj jalksdfj la;ksdjf jkla;jdsflkj.
+                            asdfafd asdfjasl;kdfj  jalskdjf;laksjdf jaklsdjf;lkasdjf;alksdfj jalksdfj la;ksdjf jkla;jdsflkj.
+                            asdfafd asdfjasl;kdfj  jalskdjf;laksjdf jaklsdjf;lkasdjf;alksdfj jalksdfj la;ksdjf jkla;jdsflkj.
+                            asdfafd asdfjasl;kdfj  jalskdjf;laksjdf jaklsdjf;lkasdjf;alksdfj jalksdfj la;ksdjf jkla;jdsflkj.
+                            asdfafd asdfjasl;kdfj  jalskdjf;laksjdf jaklsdjf;lkasdjf;alksdfj jalksdfj la;ksdjf jkla;jdsflkj.
+                            asdfafd asdfjasl;kdfj  jalskdjf;laksjdf jaklsdjf;lkasdjf;alksdfj jalksdfj la;ksdjf jkla;jdsflkj.
+                            asdfafd asdfjasl;kdfj  jalskdjf;laksjdf jaklsdjf;lkasdjf;alksdfj jalksdfj la;ksdjf jkla;jdsflkj.
+                            asdfafd asdfjasl;kdfj  jalskdjf;laksjdf jaklsdjf;lkasdjf;alksdfj jalksdfj la;ksdjf jkla;jdsflkj.
+                            asdfafd asdfjasl;kdfj  jalskdjf;laksjdf jaklsdjf;lkasdjf;alksdfj jalksdfj la;ksdjf jkla;jdsflkj.
+                            asdfafd asdfjasl;kdfj  jalskdjf;laksjdf jaklsdjf;lkasdjf;alksdfj jalksdfj la;ksdjf jkla;jdsflkj.
+                            asdfafd asdfjasl;kdfj  jalskdjf;laksjdf jaklsdjf;lkasdjf;alksdfj jalksdfj la;ksdjf jkla;jdsflkj.
+                            asdfafd asdfjasl;kdfj  jalskdjf;laksjdf jaklsdjf;lkasdjf;alksdfj jalksdfj la;ksdjf jkla;jdsflkj.
+                            asdfafd asdfjasl;kdfj  jalskdjf;laksjdf jaklsdjf;lkasdjf;alksdfj jalksdfj la;ksdjf jkla;jdsflkj.
+                            asdfafd asdfjasl;kdfj  jalskdjf;laksjdf jaklsdjf;lkasdjf;alksdfj jalksdfj la;ksdjf jkla;jdsflkj.
+                            asdfafd asdfjasl;kdfj  jalskdjf;laksjdf jaklsdjf;lkasdjf;alksdfj jalksdfj la;ksdjf jkla;jdsflkj.
+                            asdfafd asdfjasl;kdfj  jalskdjf;laksjdf jaklsdjf;lkasdjf;alksdfj jalksdfj la;ksdjf jkla;jdsflkj.
+                            asdfafd asdfjasl;kdfj  jalskdjf;laksjdf jaklsdjf;lkasdjf;alksdfj jalksdfj la;ksdjf jkla;jdsflkj.
+                            asdfafd asdfjasl;kdfj  jalskdjf;laksjdf jaklsdjf;lkasdjf;alksdfj jalksdfj la;ksdjf jkla;jdsflkj.
+                            asdfafd asdfjasl;kdfj  jalskdjf;laksjdf jaklsdjf;lkasdjf;alksdfj jalksdfj la;ksdjf jkla;jdsflkj.
+                            asdfafd asdfjasl;kdfj  jalskdjf;laksjdf jaklsdjf;lkasdjf;alksdfj jalksdfj la;ksdjf jkla;jdsflkj.
+                            asdfafd asdfjasl;kdfj  jalskdjf;laksjdf jaklsdjf;lkasdjf;alksdfj jalksdfj la;ksdjf jkla;jdsflkj.
+                            asdfafd asdfjasl;kdfj  jalskdjf;laksjdf jaklsdjf;lkasdjf;alksdfj jalksdfj la;ksdjf jkla;jdsflkj.
+                            </p>
+                        </div>
+                        <table id="bottom-table">
+                            <tr>
+                                <td> <!-- column 1 -->
+                                    <div id="DownloadLinks">
+                                        <div id="DownloadLinkTitle">Download Links:</div>
+                                        <ul id="links">
+                                            <li><a href="http://www.gutenberg.org/" target="_blank">Project Gutenberg</a></li>
+                                            <li><a href="" target="_blank">This is a link</a></li>
+                                            <li><a href="" target="_blank">This is a link</a></li>
+                                        <ul>
+                                    </div>
+                                </td>
+                                <td> <!-- column 2 -->
+                                    <div id="AddToBookshelf">
+                                        <button  id ="AddToBookshelfButton" type="button" onclick="alert('Add To Bookshelf!')">Add To Bookshelf</button>
+                                    </div>
+                                </td>
+                             </tr>
+                         </table>
+                    </div>
+				</td>
+			</tr>
+		</table>
+		
+	</div>
+
+</body>
+</html>

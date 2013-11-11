@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<head>
+	<title>Gutenberg's Box</title>
+	<link rel="stylesheet" type="text/css" href="index.css">
+</head> 
+<body>
+	<div id = "TopBanner">
+		<table id="banner-table">
+			<tr>
+				<td> <!-- column 1 -->
+					<div id = "BannerName"> 
+						Gutenberg's Box
+					</div>
+				</td>
+				<td> <!-- column 2 -->
+                <div id="UserInfo">
+					{{#with GutenbergsBox.selectedUserController.selectedUser}}
+						<ul id="UserMenu">
+						  <li><a href="">
+							{{username}}
+							<span id="caret" style="font-size: 8pt">
+								&#9660
+							</span>
+							</a>
+							<ul>
+								<li><a href="bookshelf.html">Bookshelf</a></li>
+								<li><a href="">Boxes</a></li>
+								<li><a href="">Settings</a></li>
+								<li><a href="">Sign Out</a></li>
+							</ul>
+						  </li>
+						</ul>
+					{{/with}}
+                </div>
+				</td>
+			</tr>
+			<tr>
+				<td> <!-- column 1 -->
+					<div id = "NewStation"> 
+						Add Box:
+                         <input type="text">
+                         <button type="button" onclick="alert('Add a Box!')">Add</button>
+					</div>
+				</td>
+				<td> <!-- column 2 -->
+					<div id = "Voting"> 
+                        <button id = "inputButton" type="button" onclick="alert('Previous!')"  style="width: 50px; height: 30px">
+                            <img src="Previous.png" width="100%" height="100%"/> 
+                        </button>
+                        <button id = "inputButton" type="button" onclick="alert('Thumbs Up!')"  style="width: 50px; height: 30px">
+                            <img src="ThumbsUp.svg" width="100%" height="100%"/> 
+                        </button>
+                        <button id = "inputButton" type="button" onclick="alert('Thumbs Down!')"  style="width: 50px; height: 30px">
+                            <img src="ThumbsDown.svg" width="100%" height="100%"/> 
+                        </button>
+                        <button id = "inputButton" type="button" onclick="alert('Next!')"  style="width: 50px; height: 30px">
+                            <img src="Next.png" width="100%" height="100%"/> 
+                        </button>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+	<div id="content">
+
+		<div id = "StationName">
+			{{#with GutenbergsBox.selectedBoxController.selectedBox}}
+				<span>{{title}}</span>
+				<button  id ="DeleteStation" type="button" onclick="alert('Delete Station')">Delete Box</button>
+			{{/with}}
+		</div>
+		
+		<table id="actual-table">
+			<tr>
+				<td> <!-- column 1 -->
+                    <div id= "StationColumn">
+                        <h3> Boxes </h3>
+                        <ul id ="StationList">
+							{{#with GutenbergsBox.selectedUserController.selectedUser}}
+								{{#each box in boxes}}
+									<li><a href="">{{box.title}}</a></li>
+								{{/each}}
+							{{/with}}
+                        </ul>
+                    </div>
+				</td>
+				<td> <!-- column 2 -->
+                    <div id = "ContentColumn">
+						{{#with GutenbergsBox.selectedBookController.selectedBook}}
+							<div id  = "BookInfo">
+								<div id="BookTitle"> {{title}} </div>
+								<div id="Author"> By {{author}} </div>
+							</div>
+							<div id = "BookContent">
+								{{content}}
+							</div>
+						{{/with}}
+                        <table id="bottom-table">
+                            <tr>
+                                <td> <!-- column 1 -->
+                                    <div id="DownloadLinks">
+                                        <div id="DownloadLinkTitle">Download Links:</div>
+                                        <ul id="links">
+											{{#with GutenbergsBox.selectedBookController.selectedBook}}
+												{{#each downloadLink in downloadLinks}}
+													<li><a href={{downloadLink.link}}>{{downloadLink.title}}</a></li>
+												{{/each}}
+											{{/with}}
+                                        <ul>
+                                    </div>
+                                </td>
+                                <td> <!-- column 2 -->
+                                    <div id="AddToBookshelf">
+                                        <button  id ="AddToBookshelfButton" type="button" onclick="alert('Add To Bookshelf!')">Add To Bookshelf</button>
+                                    </div>
+                                </td>
+                             </tr>
+                         </table>
+                    </div>
+				</td>
+			</tr>
+		</table>
+		
+	</div>
+
+</body>
+</html>
