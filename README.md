@@ -6,7 +6,6 @@ Pandora...for books!
 File Structure
 ==============
 
-* `browser` - holds browser Javascript files to be compiled for browser
-* `static` - files that can be deployed and served with no processing
+* `public` - holds static content for serving, esp. javascript, HTML, ejs, css
 * `server` - holds components of the Node.js backend server
 
