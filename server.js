@@ -7,7 +7,15 @@
 
   var Express = require('express')
     , app = new Express()
+    , port
     ;
+
+  if (process.argv[2]) {
+    port = parseInt(process.argv[2]);
+  } else {
+    port = 3000;
+  }
+  console.log("listening on port", port);
 
   console.log("hello!");
   console.log("module:", require("./server/hello"));
@@ -17,7 +25,7 @@
     res.json(req.url);
   })
 
-  app.listen(3000);
+  app.listen(parseInt(port));
 // This function with its own little closure is then executed with this file
 // is run.
 })();
