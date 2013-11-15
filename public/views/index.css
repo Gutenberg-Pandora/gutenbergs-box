@@ -35,7 +35,7 @@ body {
 }
 
 #StationName{
-    background: #E8E8E8;
+    background: #EEE8AA;
     width: 100%;
     text-align: center;
     overflow:hidden;
@@ -61,11 +61,11 @@ body {
 }	
 
 #banner-table tr:nth-child(odd) { 
-    background: #D0D0D0;
+    background: #EEE8AA;
 }
 
 #banner-table tr:nth-child(even) { 
-    background: #EEE8AA;
+    background: #D0D0D0;
 }
 
 #banner-table td:nth-child(odd) { 
