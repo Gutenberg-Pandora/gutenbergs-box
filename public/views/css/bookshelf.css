@@ -3,14 +3,14 @@ body {
       font-family: Verdana, Arial, Helvetica, SunSans-Regular, Sans-Serif;
       margin:0px;
       text-align: center;
-      background-image: url("bookpile.jpg");
+      background-image: url("../img/bookshelf.jpg");
 }
 
 #content { 	
     text-align: left;
     vertical-align: middle;	
     margin: 0px auto;
-    margin-top: 10px;
+    margin-top: 20px;
     padding: 0px;
     width: 800px;
 }
@@ -38,16 +38,11 @@ body {
     background: #EEE8AA;
     width: 100%;
     text-align: center;
-    overflow:hidden;
-}
-
-#StationName button{
-    float: right;
 }
 
 #StationName span{
     font-size: 18px;
-    margin-right: 150px;
+    margin-right: 200px;
 }
 
 #BannerName{
@@ -102,24 +97,17 @@ body {
     margin-top: 20px;
     margin-bottom: 10px;
     padding: 0px;
-    width: 565px;
+    width: 95%;
     height: 375px;
     background-color: #ffffff;
-    border-style:none;
+    border-style:dashed;
     border-width:1px;     
     overflow: hidden;
 }
 
-#BookContent p {
-    font-size: 14px;
-    font-family: Times New Roman;
-}
-
-/*
 #BookContent:hover{
     overflow-y:scroll;
 }
-*/
 
 #DownloadLinkTitle{
     font-size: 14px;
