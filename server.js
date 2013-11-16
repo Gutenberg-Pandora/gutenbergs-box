@@ -15,17 +15,19 @@
   } else {
     port = 3000;
   }
-  console.log("listening on port", port);
 
-  console.log("hello!");
-  console.log("module:", require("./server/hello"));
+  // it is handy to serve .ejs files as text/html files.
+  Express.static.mime.define({'text/html': ['ejs']});
 
-  app.use(Express.static(__dirname + '/public'));
+  // Set up middleware and routes for use
+  app.use(Express.logger());
   app.get("/", function(req, res) {
-    res.json(req.url);
-  })
+    res.redirect("/views/index.html");
+  });
+  app.use(Express.static(__dirname + '/public'));
 
   app.listen(parseInt(port));
+  console.log("listening on port", port);
 // This function with its own little closure is then executed with this file
 // is run.
 })();
