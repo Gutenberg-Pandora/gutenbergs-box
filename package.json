@@ -10,6 +10,8 @@
       "express": "3.x"
     , "request": "2.x"
     , "mongoose": "3.x"
+    , "validator": "2.x"
+    , "xml2js": "0.x"
   },
   "repository": {
     "type": "git",
