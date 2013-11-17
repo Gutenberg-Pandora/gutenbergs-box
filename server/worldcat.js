@@ -191,5 +191,25 @@
   };
 
   module.exports = WorldCat;
+
+  if (require.main === module) {
+    var WorldCat = require('./worldcat');
+    var wc = new WorldCat();
+
+    var callback = function(err, result) {
+      if (err) {
+        console.log(err);
+      }
+      else {
+        console.log(result[0]); 
+      }
+    };
+
+    wc.recommend.byTitle("mistborn", callback);
+    wc.recommend.byTitle("the lord of the rings", callback);
+    wc.recommend.byTitle("the hobbit", callback);
+    wc.recommend.byTitle("the hound of rowan", callback);
+    wc.recommend.byTitle("the year of the griffin", callback);
+  }
 }());
 
