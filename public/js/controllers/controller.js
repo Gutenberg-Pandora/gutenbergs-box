@@ -14,6 +14,18 @@ GutenbergsBox.selectedUserController = Ember.ObjectController.createWithMixins({
 	}
 });
 
+GutenbergsBox.selectedUserController = Ember.ObjectController.extend({
+	actions: {
+    addBox: function() {
+      
+    },
+
+    removeBox: function() {
+      
+    }
+  }
+});
+
 GutenbergsBox.selectedBoxController = Ember.ObjectController.createWithMixins({
 	selectedBox: [],
 	select: function(item) {
