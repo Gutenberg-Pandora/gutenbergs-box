@@ -7,6 +7,8 @@
 
   var Express = require('express')
     , app = new Express()
+    , DatabaseAccess = require('server/databaseaccess')
+    , db = new DatabaseAccess();
     , port
     , fakeUserDb
     ;
@@ -42,6 +44,15 @@
   Express.static.mime.define({'text/html': ['ejs']});
 
   // Set up middleware and routes for use
+  var callback = function(err, result){
+    if(err){
+      res.send(404);
+    }
+    else{
+      res.json(result);
+    }
+  };
+
   app.use(Express.logger());
   app.get("/", function(req, res) {
     res.redirect("/views/index.html");
@@ -52,11 +63,13 @@
   app.get("/users/:username", function(req, res) {
     var username = req.params.username;
 
-    if (username && username in fakeUserDb) {
-      res.json(fakeUserDb[username]);
-    } else {
-      res.send(404);
-    }
+    db.isUser(username, callback);
+
+    //if (username && username in fakeUserDb) {
+    //  res.json(fakeUserDb[username]);
+    //} else {
+    //  res.send(404);
+    //}
   });
   app.get("/users/:username/boxes", function(req, res) {
     var username = req.params.username
