@@ -8,6 +8,7 @@
   var Express = require('express')
     , app = new Express()
     , port
+    , fakeUserDb
     ;
 
   if (process.argv[2]) {
@@ -16,6 +17,27 @@
     port = 3000;
   }
 
+  fakeUserDb = {
+    bob: {
+      username: "bob",
+      password: "fred",
+      readingQueue: [
+        "lccn-n85-221132",
+        "144221380"
+      ],
+      boxes: {
+        fantasy: {
+          liked: [
+            "42363969"
+          ],
+          disliked: [
+            "61147491"
+          ]
+        }
+      }
+    }
+  };
+
   // it is handy to serve .ejs files as text/html files.
   Express.static.mime.define({'text/html': ['ejs']});
 
@@ -23,6 +45,48 @@
   app.use(Express.logger());
   app.get("/", function(req, res) {
     res.redirect("/views/index.html");
+  });
+  app.get("/users", function(req, res) {
+    res.json(Object.keys(fakeUserDb));
+  });
+  app.get("/users/:username", function(req, res) {
+    var username = req.params.username;
+
+    if (username && username in fakeUserDb) {
+      res.json(fakeUserDb[username]);
+    } else {
+      res.send(404);
+    }
+  });
+  app.get("/users/:username/boxes", function(req, res) {
+    var username = req.params.username
+      ;
+
+    if (username && username in fakeUserDb) {
+      res.json(Object.keys(fakeUserDb[username].boxes || {}));
+    } else {
+      res.send(404);
+    }
+  });
+  app.get("/users/:username/boxes/:boxname", function(req, res) {
+    var user = req.params.username
+      , userObj
+      , box = req.params.boxname
+      , boxObj
+      ;
+
+    // validate user
+    if (user && // user isn't an empty string or undefined (unnecessary?)
+        user in fakeUserDb && // user exists
+        fakeUserDb[user] && // user's entry is an object
+        fakeUserDb[user].boxes && // user has boxes object
+        box in fakeUserDb[user].boxes // box exists
+        )
+    {
+      res.json(fakeUserDb[user].boxes[box]);
+    } else {
+      res.send(404);
+    }
   });
   app.use(Express.static(__dirname + '/public'));
 
