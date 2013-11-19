@@ -7,7 +7,7 @@
 
   var Express = require('express')
     , app = new Express()
-    , DatabaseAccess = require('server/databaseaccess')
+    , DatabaseAccess = require('./server/databaseaccess')
     , db = new DatabaseAccess()
     , port
     , fakeUserDb
