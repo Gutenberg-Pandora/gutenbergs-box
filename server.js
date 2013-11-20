@@ -13,6 +13,17 @@
     , fakeUserDb
     ;
 
+  // I like to keep function declarations at the top of their scope, as that's
+  // where Javascript interprets them anyhow.
+  // Handle possibly-problematic DB calls
+  function dbQueryResponder(err, result) {
+    if(err) {
+      res.send(404);
+    } else {
+      res.json(result);
+    }
+  };
+
   if (process.argv[2]) {
     port = parseInt(process.argv[2]);
   } else {
@@ -44,15 +55,6 @@
   Express.static.mime.define({'text/html': ['ejs']});
 
   // Set up middleware and routes for use
-  var callback = function(err, result){
-    if(err){
-      res.send(404);
-    }
-    else{
-      res.json(result);
-    }
-  };
-
   app.use(Express.logger());
   app.get("/", function(req, res) {
     res.redirect("/views/index.html");
@@ -63,13 +65,7 @@
   app.get("/users/:username", function(req, res) {
     var username = req.params.username;
 
-    db.isUser(username, callback);
-
-    //if (username && username in fakeUserDb) {
-    //  res.json(fakeUserDb[username]);
-    //} else {
-    //  res.send(404);
-    //}
+    db.isUser(username, dbQueryResponder);
   });
   app.get("/users/:username/boxes", function(req, res) {
     var username = req.params.username
