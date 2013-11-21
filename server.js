@@ -13,6 +13,8 @@
     , fakeUserDb
     ;
 
+  var WorldCat = require('./server/worldcat');
+
   // I like to keep function declarations at the top of their scope, as that's
   // where Javascript interprets them anyhow.
   // Handle possibly-problematic DB calls
@@ -22,7 +24,16 @@
     } else {
       res.json(result);
     }
-  };
+  }
+  
+  function recQueryResponder(err, result) {
+    if(err) {
+      res.send(404);
+    } else {
+      res.json(result);
+    }
+  }
+   
 
   if (process.argv[2]) {
     port = parseInt(process.argv[2]);
@@ -96,6 +107,20 @@
     } else {
       res.send(404);
     }
+  });
+  app.get("/recommend/:title", function(req, res) {
+    var title = req.params.title;
+    var wc = new WorldCat();
+    
+    wc.recommend.byTitle(title, function (err, result) {
+      if (err) {
+        res.send(404);
+      }
+      else {
+        var list = JSON.stringify(result);
+        res.send(list);
+      }
+    });
   });
   app.use(Express.static(__dirname + '/public'));
 
