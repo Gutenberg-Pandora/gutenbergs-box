@@ -108,8 +108,9 @@
       res.send(404);
     }
   });
-  app.get("/recommend/:title", function(req, res) {
-    var title = req.params.title;
+  app.get("/recommend", function(req, res) {
+    console.log(req.query);
+    var title = req.query.title;
     var wc = new WorldCat();
     
     wc.recommend.byTitle(title, function (err, result) {
