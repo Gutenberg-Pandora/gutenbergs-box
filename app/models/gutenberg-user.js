@@ -21,11 +21,11 @@ var GutenbergUserSchema = new Schema({
 /**
  * Validations
  */
-UserSchema.path('username').validate(function(username) {
+GutenbergUserSchema.path('username').validate(function(username) {
     return username.length;
 }, 'Username cannot be blank');
 
-UserSchema.path('password').validate(function(hashed_password) {
+GutenbergUserSchema.path('password').validate(function(hashed_password) {
     return hashed_password.length;
 }, 'Password cannot be blank');
 
