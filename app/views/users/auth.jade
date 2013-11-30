@@ -1,8 +1,10 @@
-extends ../layouts/default
+extends ../layouts/modal
 
 block content
+  h2 Authenticate
   .row
-    .offset1.span5
+  
+    .offset0.span7
       a(href="/auth/facebook")
         img(src="/img/icons/facebook.png")
       a(href="/auth/github")
@@ -11,12 +13,3 @@ block content
         img(src="/img/icons/twitter.png")
       a(href="/auth/google")
         img(src="/img/icons/google.png")
-    .span6
-      if (typeof errors !== 'undefined')
-        .fade.in.alert.alert-block.alert-error
-          a.close(data-dismiss="alert", href="javascript:void(0)") x
-          ul
-            each error in errors
-              li= error.type
-
-      block auth
