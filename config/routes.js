@@ -16,6 +16,12 @@ module.exports = function(app, passport, auth) {
     app.get('/users/me', users.me);
     app.get('/users/:userId', users.show);
 
+    //Gutenberg User Routes
+    var gutenbergUsers = require('../app/controllers/gutenberg-users');
+
+    app.post('/gutenbergUsers', gutenbergUsers.create);
+    app.post('gutenbergUsers/:username/boxes', gutenbergUsers.getBoxes);
+
     //Setting the facebook oauth routes
     app.get('/auth/facebook', passport.authenticate('facebook', {
         scope: ['email', 'user_about_me'],
