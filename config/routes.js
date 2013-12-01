@@ -20,7 +20,7 @@ module.exports = function(app, passport, auth) {
     var gutenbergUsers = require('../app/controllers/gutenberg-users');
 
     app.post('/gutenbergUsers', gutenbergUsers.create);
-    app.post('gutenbergUsers/:username/boxes', gutenbergUsers.getBoxes);
+    app.post('/gutenbergUsers/:username/boxes', gutenbergUsers.getBoxes);
 
     //Setting the facebook oauth routes
     app.get('/auth/facebook', passport.authenticate('facebook', {
