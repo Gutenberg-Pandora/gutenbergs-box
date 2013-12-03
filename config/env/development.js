@@ -4,8 +4,8 @@ module.exports = {
         name: "MEAN - A Modern Stack - Development"
     },
     facebook: {
-        clientID: "APP_ID",
-        clientSecret: "APP_SECRET",
+        clientID: "218491238333832",
+        clientSecret: "0b1e2718e2e01160f428c52bbe4a24f7",
         callbackURL: "http://localhost:3000/auth/facebook/callback"
     },
     twitter: {
@@ -14,8 +14,8 @@ module.exports = {
         callbackURL: "http://localhost:3000/auth/twitter/callback"
     },
     github: {
-        clientID: "APP_ID",
-        clientSecret: "APP_SECRET",
+        clientID: "6cd961294a1bf1177865",
+        clientSecret: "100d8bdc3785f2a2ba2bd01f263b01367d2ff1fb",
         callbackURL: "http://localhost:3000/auth/github/callback"
     },
     google: {
