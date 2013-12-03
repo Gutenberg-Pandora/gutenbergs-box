@@ -19,8 +19,8 @@ exports.create = function(req, res) {
 exports.getBoxes = function(req, res) {
 	var username = req.params.username;
 	User.findOne({ 'username': username}, 'boxes', function (err, boxes) {
-		if(boxes != null){
-	  		res.jsonp(boxes);
+		if(boxes !== null){
+			res.jsonp(boxes);
 		}
 		else{
 			res.jsonp({});
