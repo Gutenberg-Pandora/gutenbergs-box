@@ -1,5 +1,6 @@
 module.exports = {
     db: "mongodb://localhost/mean",
+    port: 80,
     app: {
         name: "Gutenberg's Box - Production"
     },
