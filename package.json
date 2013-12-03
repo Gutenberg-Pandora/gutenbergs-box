@@ -1,12 +1,12 @@
 {
     "name": "mean",
-    "description": "MEAN - A Modern Stack: MongoDB, ExpressJS, AngularJS, NodeJS. (BONUS: Passport User Support).",
+    "description": "Gutenberg's Box: a new way to find and read books",
     "version": "0.1.0",
     "private": false,
-    "author": "Amos Haviv",
+    "author": "Gutenberg-Pandora",
     "repository": {
         "type": "git",
-        "url": "https://github.com/linnovate/mean.git"
+        "url": "http://github.com/Gubenberg-Pandora/gutenbergs-box.git"
     },
     "engines": {
         "node": "0.10.x",
