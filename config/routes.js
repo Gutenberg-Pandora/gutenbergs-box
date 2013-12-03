@@ -60,6 +60,25 @@ module.exports = function(app, passport, auth) {
     //Finish with setting up the userId param
     app.param('userId', users.user);
 
+    //WorldCat Routes
+    var WorldCat = require('../app/controllers/worldcat');
+    app.get('/recommend', function(req, res) {
+        console.log(req.query);
+        var title = req.query.title;
+        var wc = new WorldCat();
+        var less = true;
+        
+        wc.recommend.byTitle(title, function (err, result) {
+            if (err) {
+                res.send(404);
+            }
+            else {
+                var list = JSON.stringify(result);
+                res.send(list);
+            }
+        }, less);
+    });
+
     //Article Routes
     var articles = require('../app/controllers/articles');
     app.get('/articles', articles.all);

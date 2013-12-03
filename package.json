@@ -37,7 +37,10 @@
         "bower": "latest",
         "grunt": "latest",
         "grunt-cli": "latest",
-        "grunt-env": "latest"
+        "grunt-env": "latest",
+	"request": "latest",
+	"validator": "latest",
+	"xml2js": "latest"
     },
     "devDependencies": {
         "supertest": "latest",

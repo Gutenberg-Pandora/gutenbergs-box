@@ -11,5 +11,7 @@ angular.module('mean.search').controller('SearchController', ['$scope', 'Global'
     };
 
     $scope.reset();
+
+    //TODO: Make this call on the search service to get data.
  
 }]);
