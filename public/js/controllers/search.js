@@ -1,17 +1,20 @@
-angular.module('mean.search').controller('SearchController', ['$scope', 'Global', function ($scope, Global) {
-    $scope.global = Global;
-    $scope.master= {};
+//Controller for searching and recommending books
+angular.module('mean.search').controller('SearchController',
+                                         ['$scope',
+                                         'Global',
+                                         'Search',
+                                         function ($scope,  Global, Search) {
 
-    $scope.update = function(user) {
-     $scope.master= angular.copy(user);
+    $scope.recommend = function() {
+        var callback = function(results_list) {
+            $scope.results_list = results_list;
+        };
+
+        var query = {
+            title : this.title
+        };
+        
+        Search.get(query, callback);
     };
-
-    $scope.reset = function() {
-     $scope.user = angular.copy($scope.master);
-    };
-
-    $scope.reset();
-
-    //TODO: Make this call on the search service to get data.
  
 }]);
