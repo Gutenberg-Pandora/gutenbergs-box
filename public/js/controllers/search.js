@@ -1,20 +1,26 @@
 //Controller for searching and recommending books
 angular.module('mean.search').controller('SearchController',
                                          ['$scope',
-                                         'Global',
-                                         'Search',
-                                         function ($scope,  Global, Search) {
+                                             '$log',
+                                             'Global',
+                                             'Search',
+                                             function ($scope, $log, Global, Search) {
 
     $scope.recommend = function() {
-        var callback = function(results_list) {
-            $scope.results_list = results_list;
+        var success  = function(result) {
+            $scope.results_list = result;
         };
 
-        var query = {
+        var error = function(result) {
+            $log.error('request failed');
+            $log.error(result);
+        };
+
+        var query_params = {
             title : this.title
         };
-        
-        Search.get(query, callback);
+      
+        Search.get(query_params, success, error);
     };
  
 }]);

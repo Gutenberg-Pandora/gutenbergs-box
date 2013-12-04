@@ -143,9 +143,9 @@
 
                             if (less) {
                                 var Minimal = function(title, author, ocn){
-                                    this.title = title; 
+                                    this.title = title;
                                     this.author = author;
-                                    this.ocn = ocn; 
+                                    this.ocn = ocn;
                                 };
 
                                 var minList = [];
@@ -158,8 +158,6 @@
                                     var minimized = new Minimal(title, author, ocn);
                                     minList.push(minimized);
                                 });
-
-                                console.log(minList);
 
                                 list = minList;
                             }

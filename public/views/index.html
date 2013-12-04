@@ -3,21 +3,28 @@
 <h2>Select a Book to Begin</h2>
 </div>
 <div class='well'>
-<div class='container' data-ng-controller="SearchController">
-  <div class="col-lg-6">
-    <div class="input-group">
-      <input type="text" class="form-control" data-ng-model="title" placeholder='Search' required>
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button" ng-click="recommend()">Go!</button>
-      </span>
-    </div><!-- /input-group -->
-</div>
-    <ul>
-        <li data-ng-repeat="item in results_list">
-            <span>{{item.title}}</span> /
-            <span>{{item.author}}</span>
-            <span>{{item.ocn}}</span>
-        </li>
-    </ul>
+<div class='container' data-ng-controller="SearchController" ng-init="results_list=[]">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="input-group">
+                 <input type="text" class="form-control" data-ng-model="title" placeholder='Search' required>
+                    <span class="input-group-btn">
+                     <button class="btn btn-default" type="button" ng-click="recommend()">Go!</button>
+                    </span>
+            </div><!-- /input-group -->
+        </div>
+    </div>
+     <div class="row">
+        <div class="col-lg-8">
+         <ul class="list-group">
+          <li ng-repeat="result in results_list" class="list-group-item">
+          <p>Title: <span>{{result.title}}</span></p> 
+          <p>Author: <span>{{result.author}}</span></p> 
+          <p>ocn: <span>{{result.ocn}}</span></p> 
+          </li>
+        </ul>
+        </div>
+        </div>
+    </div>
 </div>
 </section>

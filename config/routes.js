@@ -70,11 +70,10 @@ module.exports = function(app, passport, auth) {
         
         wc.recommend.byTitle(title, function (err, result) {
             if (err) {
-                res.send(404);
+                res.jsonp(404);
             }
             else {
-                var list = JSON.stringify(result);
-                res.send(list);
+                res.jsonp(result);
             }
         }, less);
     });
