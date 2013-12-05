@@ -2,7 +2,8 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-    User = mongoose.model('User');
+    User = mongoose.model('User'),
+    _ = require('underscore');
 
 /**
  * Auth callback
@@ -101,3 +102,61 @@ exports.user = function(req, res, next, id) {
             next();
         });
 };
+
+/**
+ * Set bookId param
+ */
+exports.bookId = function(req, res, next, id) {
+    req.bookId = id;
+    next();
+};
+
+/**
+ *  Add book to reading queue
+ */
+exports.addBook = function(req, res) {
+    var bookId = req.bookId;
+    var user = req.user;
+    var readingQueue = user.readingQueue;
+
+    readingQueue.push(bookId);
+    readingQueue = _.extend(user.readingQueue, readingQueue);
+
+    User.update({_id: user._id},{$set: {readingQueue: readingQueue}}, function(err){
+        res.jsonp(user);
+    });
+};
+
+/**
+ *  Remove book from reading queue
+ */
+exports.removeBook = function(req, res) {
+    var bookId = req.bookId;
+    var user = req.user;
+    var readingQueue = user.readingQueue;
+
+    var index = readingQueue.indexOf(bookId);
+    if(index > -1){
+        readingQueue.splice(index,1);
+    }
+    readingQueue = _.extend(user.readingQueue, readingQueue);
+
+    User.update({_id: user._id},{$set: {readingQueue: readingQueue}}, function(err){
+        res.jsonp(user);
+    });
+};
+
+/**
+ *  Get all books in reading queue
+ */
+exports.getBooks = function(req, res) {
+    var user = req.user;
+    res.jsonp(user.readingQueue);
+};
+
+
+
+
+
+
+

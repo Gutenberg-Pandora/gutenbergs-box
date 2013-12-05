@@ -16,11 +16,10 @@ module.exports = function(app, passport, auth) {
     app.get('/users/me', users.me);
     app.get('/users/:userId', users.show);
 
-    //Gutenberg User Routes
-    var gutenbergUsers = require('../app/controllers/gutenberg-users');
-
-    app.post('/gutenbergUsers', gutenbergUsers.create);
-    app.post('/gutenbergUsers/:username/boxes', gutenbergUsers.getBoxes);
+    //Setting up the "To Read" routes
+    app.get('/users/me/toRead', users.getBooks);
+    app.put('/users/me/toRead/:bookId', users.addBook);
+    app.del('/users/me/toRead/:bookId', users.removeBook);
 
     //Setting the facebook oauth routes
     app.get('/auth/facebook', passport.authenticate('facebook', {
@@ -65,6 +64,7 @@ module.exports = function(app, passport, auth) {
 
     //Finish with setting up the userId param
     app.param('userId', users.user);
+    app.param('bookId', users.bookId);
 
     //Article Routes
     var articles = require('../app/controllers/articles');

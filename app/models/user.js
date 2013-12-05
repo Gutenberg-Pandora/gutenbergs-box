@@ -18,6 +18,12 @@ var UserSchema = new Schema({
         type: String,
         unique: true
     },
+    readingQueue: [String],
+    boxes: [{
+        title: String,
+        liked: [String],
+        disliked: [String]
+    }],
     provider: String,
     hashed_password: String,
     salt: String,
