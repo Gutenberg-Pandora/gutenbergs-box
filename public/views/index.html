@@ -16,14 +16,33 @@
     </div>
      <div class="row">
         <div class="col-lg-8">
-         <ul class="list-group">
-          <li ng-repeat="result in results_list" class="list-group-item">
-          <p>Title: <span>{{result.title}}</span></p> 
-          <p>Author: <span>{{result.author}}</span></p> 
-          <p>ocn: <span>{{result.ocn}}</span></p> 
+         <ul class="list-group media-list">
+             <li ng-repeat="result in results_list" class="list-group-item media">
+             <div class="media-body">
+                  <p>Title: <span>{{result.title}}</span></p> 
+                  <p>Author: <span>{{result.author}}</span></p> 
+                  <p>ocn: <span>{{result.ocn}}</span></p> 
+             </div>
           </li>
         </ul>
         </div>
+        </div>
+    </div>
+</div>
+<div class='well' data-ng-controller="GBooksController">
+    <input type="text" class="form-control" data-ng-model="ocn" placeholder="ocn" required>
+    <button type="submit" ng-click="get_links(ocn)">Get</button>
+    <div class='media' id="book-data" ng-show="google_stats">
+        <a class="pull-left" href="#">
+            <img class="media-object" src={{google_stats.thumbnail_url}} alt="book thumbnail">
+ <!--Full image can probably be obtained by replacing zoom=5 with zoom=1-->
+        </a>
+        <div class='media-body'>
+            <p>Info URL: <span>{{google_stats.info_url}}</span></p>
+            <p>Thumbnail URL: <span>{{google_stats.thumbnail_url}}</span></p>
+            <p>Preview: <span>{{google_stats.preview}}</span></p>
+            <p ng-show='google_stats.preview_url'>Preview URL: <span>{{google_stats.preview_url}}</span></p>
+            <p>Embeddable: <span>{{google_stats.embeddable}}</span></p>
         </div>
     </div>
 </div>
