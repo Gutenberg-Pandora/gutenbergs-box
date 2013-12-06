@@ -12,6 +12,7 @@ angular.module('mean.search').controller('SearchController',
             $scope.google_stats = {};
             for (var i = 0; i < result.length; i++) {
                 $scope.get_links(result[i].ocn);
+                result[i].title = result[i].title.replace('/', '');
             }
             $scope.results_list = result;
         };
@@ -58,6 +59,7 @@ angular.module('mean.search').controller('SearchController',
     $scope.get_info = function(id, ocn) {
         var success = function(result) {
             $scope.google_stats[ocn].description = result.volumeInfo.description;
+            $scope.google_stats[ocn].viewer = result.accessInfo.webReaderLink;
         };
 
         var error = function(result) {

@@ -18,8 +18,8 @@
         <div class="col-lg-8">
          <ul class="list-group media-list">
              <li ng-repeat="result in results_list" class="list-group-item media">
-                <div class='media' id="book-data" ng-show="google_stats">
-                    <a class="pull-left" href="">
+                <div class='media' id="book-data">
+                    <a class="pull-left" href="" ng-show="google_stats[result.ocn]">
                         <img class="media-object" src={{google_stats[result.ocn].thumbnail_url}} alt="book thumbnail" data="http://books.google.com/googlebooks/images/no_cover_thumb.gif">
                     </a>
 
@@ -28,7 +28,8 @@
                   <p><h4 class='media-heading'>Author</h4><span>{{result.author}}</span></p> 
                   <!--<p><h4 class='media-heading'>ocn</h4><span>{{result.ocn}}</span></p> 
                   <p><h4 class='media-heading'>google_id</h4><span>{{google_stats[result.ocn].id}}</span></p>-->
-                  <p><h4 class='media-heading'>Description</h4><span>{{google_stats[result.ocn].description}}</span></p>
+                  <p ng-show="google_stats[result.ocn]"><h4 class='media-heading'>Description</h4><span>{{google_stats[result.ocn].description}}</span></p>
+                  <p ng-show="google_stats[result.ocn]"><button onclick="window.open('{{google_stats[result.ocn].viewer}}')" type="button" class="btn btn-default navbar-btn">Preview</button></p>
              </div>
           </li>
         </ul>
