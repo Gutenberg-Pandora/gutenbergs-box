@@ -27,3 +27,22 @@ footer p {
 .modal {
     display: block;
 }
+
+.navbar-inverse {
+background-color: #FFF;
+border-color: #FFF;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
+color: rgb(155, 202, 176);
+background-color: transparent;
+}
+
+.navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus {
+color: rgb(155, 202, 176);
+background-color: transparent;
+}
+
+.thumbnail {
+max-width: 128;
+}

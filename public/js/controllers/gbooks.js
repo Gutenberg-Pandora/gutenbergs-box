@@ -11,6 +11,8 @@ angular.module('mean.gbooks').controller('GBooksController',
             var objname = "OCLC:" + ocn;
             var robj =result[objname]; 
             $log.log(robj);
+            var t_url = robj.thumbnail_url;
+            robj.thumbnail_url = t_url.replace('zoom=5', 'zoom=1');
             $scope.google_stats = robj;
         };
 
