@@ -19,10 +19,10 @@ var UserSchema = new Schema({
         unique: true
     },
     readingQueue: [String],
-    boxes: [{
+    shelves: [{
         title: String,
-        liked: [String],
-        disliked: [String]
+        like: [String],
+        dislike: [String]
     }],
     provider: String,
     hashed_password: String,

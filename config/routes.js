@@ -17,9 +17,25 @@ module.exports = function(app, passport, auth) {
     app.get('/users/:userId', users.show);
 
     //Setting up the "To Read" routes
-    app.get('/users/me/toRead', users.getBooks);
-    app.put('/users/me/toRead/:bookId', users.addBook);
-    app.del('/users/me/toRead/:bookId', users.removeBook);
+    app.get('/users/me/toread', users.getBooks);
+    app.put('/users/me/toread/:bookId', users.addBook);
+    app.del('/users/me/toread/:bookId', users.removeBook);
+
+    //Setting up the Shelf routes
+    app.get('/users/me/shelf', users.getShelves);
+
+    app.get('/users/me/shelf/:shelfId', users.getShelf);
+    app.put('/users/me/shelf/:bookId', users.createShelf);
+    app.del('/users/me/shelf/:shelfId', users.removeShelf);
+
+    app.get('/users/me/shelf/:shelfId/like', users.getLike);
+    app.put('/users/me/shelf/:shelfId/like/:bookId', users.addLike);
+    app.del('/users/me/shelf/:shelfId/like/:bookId', users.removeLike);
+
+    app.get('/users/me/shelf/:shelfId/dislike', users.getDislike);
+    app.put('/users/me/shelf/:shelfId/dislike/:bookId', users.addDislike);
+    app.del('/users/me/shelf/:shelfId/dislike/:bookId', users.removeDislike);
+
 
     //Setting the facebook oauth routes
     app.get('/auth/facebook', passport.authenticate('facebook', {
@@ -65,6 +81,7 @@ module.exports = function(app, passport, auth) {
     //Finish with setting up the userId param
     app.param('userId', users.user);
     app.param('bookId', users.bookId);
+    app.param('shelfId', users.shelfId);
 
     //Article Routes
     var articles = require('../app/controllers/articles');
