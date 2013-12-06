@@ -39,6 +39,7 @@ angular.module('mean.search').controller('SearchController',
             var idstr = idRe.exec(robj.info_url);
             robj.id = idstr[1].slice(3);
             $scope.google_stats[ocn] = robj;
+            $scope.get_info(robj.id, ocn);
         };
 
         var error = function(result) {
@@ -52,6 +53,24 @@ angular.module('mean.search').controller('SearchController',
         };
       
         GBooks.dyn_links.get(query_params, success, error);
+    };
+
+    $scope.get_info = function(id, ocn) {
+        var success = function(result) {
+            $scope.google_stats[ocn].description = result.volumeInfo.description;
+        };
+
+        var error = function(result) {
+            $log.error('request failed');
+            $log.error(result);
+        };
+        
+        var query_params = {
+            'id' : id,
+            'key' : 'AIzaSyDOjrALRncMzbctiIbxGmEwgOAACANCLS0'
+        };
+
+        GBooks.volume_info.get(query_params, success, error);
     };
  
 }]);

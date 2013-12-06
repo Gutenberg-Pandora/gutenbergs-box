@@ -19,15 +19,16 @@
          <ul class="list-group media-list">
              <li ng-repeat="result in results_list" class="list-group-item media">
                 <div class='media' id="book-data" ng-show="google_stats">
-                    <a class="pull-left" href="#">
+                    <a class="pull-left" href="">
                         <img class="media-object" src={{google_stats[result.ocn].thumbnail_url}} alt="book thumbnail" data="http://books.google.com/googlebooks/images/no_cover_thumb.gif">
                     </a>
 
              <div class="media-body">
-                  <p>Title: <span>{{result.title}}</span></p> 
-                  <p>Author: <span>{{result.author}}</span></p> 
-                  <p>ocn: <span>{{result.ocn}}</span></p> 
-                  <p>google_id: <span>{{google_stats[result.ocn].id}}</span></p>
+                 <p><h4 class='media-heading'>Title</h4><span>{{result.title}}</span></p> 
+                  <p><h4 class='media-heading'>Author</h4><span>{{result.author}}</span></p> 
+                  <!--<p><h4 class='media-heading'>ocn</h4><span>{{result.ocn}}</span></p> 
+                  <p><h4 class='media-heading'>google_id</h4><span>{{google_stats[result.ocn].id}}</span></p>-->
+                  <p><h4 class='media-heading'>Description</h4><span>{{google_stats[result.ocn].description}}</span></p>
              </div>
           </li>
         </ul>
@@ -35,30 +36,5 @@
         </div>
     </div>
 </div>
-<div class='panel' data-ng-controller="GBooksController">
-    <input type="text" class="form-control" data-ng-model="ocn" placeholder="ocn" required>
-    <button type="submit" ng-click="get_links(ocn)">Get</button>
-    <div class='container' ng-show="google_stats">
-        <div class='row'>
-            <div class='col-sm-6 col-md-3'>
-                <a href={{google_stats.info_url}} class="thumbnail">
-                    <img src = {{google_stats.thumbnail_url}} alt="book cover">
-                </a>
-            </div>
-        </div>
-    </div>
-    <!--<div class='media' id="book-data" ng-show="google_stats">
-        <a class="pull-left" href="#">
-            <img class="media-object" src={{google_stats.thumbnail_url}} alt="book thumbnail">
-        </a>
-        <div class='media-body'>
-            <p>Info URL: <span>{{google_stats.info_url}}</span></p>
-            <p>Thumbnail URL: <span>{{google_stats.thumbnail_url}}</span></p>
-            <p>Preview: <span>{{google_stats.preview}}</span></p>
-            <p ng-show='google_stats.preview_url'>Preview URL: <span>{{google_stats.preview_url}}</span></p>
-            <p>Embeddable: <span>{{google_stats.embeddable}}</span></p>
-        </div>
-    </div>-->
- <!--Full image can probably be obtained by replacing zoom=5 with zoom=1-->
 </div>
 </section>
