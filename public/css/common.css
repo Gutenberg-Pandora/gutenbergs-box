@@ -28,6 +28,10 @@ footer p {
     display: block;
 }
 
+.modal-dialog {
+    width: 30%;
+    text-align: center;
+}
 .navbar-inverse {
 background-color: #FFF;
 border-color: #FFF;
