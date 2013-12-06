@@ -18,10 +18,16 @@
         <div class="col-lg-8">
          <ul class="list-group media-list">
              <li ng-repeat="result in results_list" class="list-group-item media">
+                <div class='media' id="book-data" ng-show="google_stats">
+                    <a class="pull-left" href="#">
+                        <img class="media-object" src={{google_stats[result.ocn].thumbnail_url}} alt="book thumbnail" data="http://books.google.com/googlebooks/images/no_cover_thumb.gif">
+                    </a>
+
              <div class="media-body">
                   <p>Title: <span>{{result.title}}</span></p> 
                   <p>Author: <span>{{result.author}}</span></p> 
                   <p>ocn: <span>{{result.ocn}}</span></p> 
+                  <p>google_id: <span>{{google_stats[result.ocn].id}}</span></p>
              </div>
           </li>
         </ul>

@@ -26,7 +26,7 @@ angular.module('mean.gbooks').controller('GBooksController',
             jscmd: 'viewapi'
         };
       
-        GBooks.get(query_params, success, error);
+        GBooks.dyn_links.get(query_params, success, error);
     };
     
 }]);
