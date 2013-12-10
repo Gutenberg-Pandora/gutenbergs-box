@@ -17,24 +17,24 @@ module.exports = function(app, passport, auth) {
     app.get('/users/:userId', users.show);
 
     //Setting up the "To Read" routes
-    app.get('/users/me/toread', users.getBooks);
-    app.put('/users/me/toread/:bookId', users.addBook);
-    app.del('/users/me/toread/:bookId', users.removeBook);
+    app.get('/users/me/toread',auth.requiresLogin, users.getBooks);
+    app.put('/users/me/toread/:bookId',auth.requiresLogin, users.addBook);
+    app.del('/users/me/toread/:bookId',auth.requiresLogin, users.removeBook);
 
     //Setting up the Shelf routes
-    app.get('/users/me/shelf', users.getShelves);
+    app.get('/users/me/shelf',auth.requiresLogin, users.getShelves);
 
-    app.get('/users/me/shelf/:shelfId', users.getShelf);
-    app.put('/users/me/shelf/:title', users.createShelf);
-    app.del('/users/me/shelf/:shelfId', users.removeShelf);
+    app.get('/users/me/shelf/:shelfId',auth.requiresLogin, users.getShelf);
+    app.put('/users/me/shelf/:title',auth.requiresLogin, users.createShelf);
+    app.del('/users/me/shelf/:shelfId',auth.requiresLogin, users.removeShelf);
 
-    app.get('/users/me/shelf/:shelfId/like', users.getLike);
-    app.put('/users/me/shelf/:shelfId/like/:bookId', users.addLike);
-    app.del('/users/me/shelf/:shelfId/like/:bookId', users.removeLike);
+    app.get('/users/me/shelf/:shelfId/like',auth.requiresLogin, users.getLike);
+    app.put('/users/me/shelf/:shelfId/like/:bookId',auth.requiresLogin, users.addLike);
+    app.del('/users/me/shelf/:shelfId/like/:bookId',auth.requiresLogin, users.removeLike);
 
-    app.get('/users/me/shelf/:shelfId/dislike', users.getDislike);
-    app.put('/users/me/shelf/:shelfId/dislike/:bookId', users.addDislike);
-    app.del('/users/me/shelf/:shelfId/dislike/:bookId', users.removeDislike);
+    app.get('/users/me/shelf/:shelfId/dislike',auth.requiresLogin, users.getDislike);
+    app.put('/users/me/shelf/:shelfId/dislike/:bookId',auth.requiresLogin, users.addDislike);
+    app.del('/users/me/shelf/:shelfId/dislike/:bookId',auth.requiresLogin, users.removeDislike);
 
 
     //Setting the facebook oauth routes
