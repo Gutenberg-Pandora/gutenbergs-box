@@ -14,12 +14,15 @@ angular.module('mean').config(['$routeProvider',
         when('/articles/:articleId', {
             templateUrl: 'views/articles/view.html'
         }).
+<<<<<<< HEAD
         when('/shelves', {
             templateUrl: '/views/shelves/list.html'
         }).
         when('/shelves/create', {
             templateUrl: '/views/shelves/create.html'
         }).        
+=======
+>>>>>>> b4c136e882f1fd5f5a99cdd54eb03a31fc5de596
         when('/results/:title', {
             templateUrl: 'views/search/results.html'
         }).
