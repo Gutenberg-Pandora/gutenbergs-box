@@ -25,7 +25,7 @@ module.exports = function(app, passport, auth) {
     app.get('/users/me/shelf', users.getShelves);
 
     app.get('/users/me/shelf/:shelfId', users.getShelf);
-    app.put('/users/me/shelf/:bookId', users.createShelf);
+    app.put('/users/me/shelf/:title', users.createShelf);
     app.del('/users/me/shelf/:shelfId', users.removeShelf);
 
     app.get('/users/me/shelf/:shelfId/like', users.getLike);
@@ -81,6 +81,7 @@ module.exports = function(app, passport, auth) {
     //Finish with setting up the userId param
     app.param('userId', users.user);
     app.param('bookId', users.bookId);
+    app.param('title', users.title);
     app.param('shelfId', users.shelfId);
 
     //WorldCat Routes

@@ -1,0 +1,37 @@
+angular.module('mean.shelves').controller('ShelvesController', 
+										['$scope', 
+										'$routeParams', 
+										'$location',
+										'$log', 
+										'Global', 
+										'Shelves',
+										'GBooks',
+										'Search', 
+										function ($scope, $routeParams, $location, $log, Global, Shelves, GBooks, Search) {
+    $scope.global = Global;
+
+    $scope.create = function() {
+		Shelves.createShelf(this.title);
+		this.title = "";
+		this.content = "";
+    };
+
+    $scope.delete = function() {
+		Shelves.deleteShelf(this.shelfId);
+    };
+
+    $scope.find = function() {
+		Shelves.getShelves(function(data) {
+			$scope.shelves = data;
+		});
+    };
+
+    $scope.recommend = function() {
+        $location.path('results/' + this.title);  
+    };
+
+    $scope.recommendSide = function(title) {
+        $location.path('results/' + title);  
+    };
+
+}]);

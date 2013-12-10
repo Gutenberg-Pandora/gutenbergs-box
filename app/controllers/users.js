@@ -112,6 +112,14 @@ exports.shelfId = function(req, res, next, id) {
 };
 
 /**
+ * Set title param
+ */
+exports.title = function(req, res, next, title) {
+    req.title = title;
+    next();
+};
+
+/**
 * Get all shelves
 */
 exports.getShelves = function(req, res) {
@@ -141,19 +149,24 @@ exports.getShelf = function(req, res) {
 */
 exports.createShelf = function(req, res) {
     var user = req.user;
-    var bookId = req.bookId;
+    //var bookId = req.bookId;
     var shelves = user.shelves;
+    var title = req.title;
 
-    var newShelf = {
-        title: "New Shelf",
-        like: [bookId],
-        dislike:[]
-    };
+    var WorldCat = require('./worldcat.js');
+    var wc = new WorldCat();
+    wc.classify(title, function(err, result){
+        var newShelf = {
+            title: title,
+            like: [result],
+            dislike:[]
+        };
 
-    shelves.push(newShelf);
+        shelves.push(newShelf);
 
-    User.update({_id: user._id},{$set: {shelves: shelves}}, function(err){
-        res.jsonp(user);
+        User.update({_id: user._id},{$set: {shelves: shelves}}, function(err){
+            res.jsonp(shelves[shelves.length-1]);
+        });
     });
 };
 
@@ -172,7 +185,7 @@ exports.removeShelf = function(req, res) {
     }
 
     User.update({_id: user._id},{$set: {shelves: shelves}}, function(err){
-        res.jsonp(user);
+        res.jsonp(user.shelves);
     });
 };
 
@@ -212,7 +225,7 @@ exports.addLike = function(req, res) {
     }
 
     User.update({_id: user._id},{$set: {shelves: shelves}}, function(err){
-        res.jsonp(user);
+        res.jsonp(user.shelves[index].like);
     });
 };
 
@@ -236,7 +249,7 @@ exports.removeLike = function(req, res) {
     }
 
     User.update({_id: user._id},{$set: {shelves: shelves}}, function(err){
-        res.jsonp(user);
+        res.jsonp(user.shelves[index].like);
     });
 };
 
@@ -276,7 +289,7 @@ exports.addDislike = function(req, res) {
     }
 
     User.update({_id: user._id},{$set: {shelves: shelves}}, function(err){
-        res.jsonp(user);
+        res.jsonp(user.shelves[index].dislike);
     });
 };
 
@@ -300,7 +313,7 @@ exports.removeDislike = function(req, res) {
     }
 
     User.update({_id: user._id},{$set: {shelves: shelves}}, function(err){
-        res.jsonp(user);
+        res.jsonp(user.shelves[index].dislike);
     });
 };
 
@@ -333,7 +346,7 @@ exports.addBook = function(req, res) {
     readingQueue.push(bookId);
 
     User.update({_id: user._id},{$set: {readingQueue: readingQueue}}, function(err){
-        res.jsonp(user);
+        res.jsonp(user.readingQueue);
     });
 };
 
@@ -352,7 +365,7 @@ exports.removeBook = function(req, res) {
     }
 
     User.update({_id: user._id},{$set: {readingQueue: readingQueue}}, function(err){
-        res.jsonp(user);
+        res.jsonp(user.readingQueue);
     });
 };
 

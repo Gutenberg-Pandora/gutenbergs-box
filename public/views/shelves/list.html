@@ -1,0 +1,17 @@
+<section data-ng-controller="ShelvesController" data-ng-init="find()">
+	<ul >
+		<li data-ng-repeat="shelf in shelves">
+			<span>{{shelf.title}}</span>
+			<form class="form-horizontal" data-ng-submit="delete();">
+				<div class="control-group">
+					<div class="controls">
+						<input type="text" data-ng-model="shelfId" id="shelfId" value="asd" required>
+						<input type="submit" class="btn" value="Delete">
+					</div>
+				</div>
+			</form>
+		</li>
+	</ul>
+	<h1 data-ng-hide="!shelves || shelves.length">No Shelves</h1>
+	<a href="/#!/shelves/create">Create Shelf</a>
+</section>

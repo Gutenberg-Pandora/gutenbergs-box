@@ -2,8 +2,17 @@
 <div class='page-header'>
 <h2>Select a Book to Begin</h2>
 </div>
+    <div class="sidebar" data-ng-controller="ShelvesController" data-ng-init="find()">
+     <ul>
+        <li data-ng-repeat="shelf in shelves">
+            <a data-ng-click="recommendSide(shelf.title)">{{shelf.title}}</a>
+        </li>
+    </ul>
+    <h1 data-ng-hide="!shelves || shelves.length">No Shelves</h1>
+    <a href="/#!/shelves/create">Create Shelf</a>
+    </div>
 <div class='panel'>
-<div class='container' data-ng-controller="SearchController" ng-init="results_list=[]">
+<div class='container' data-ng-controller="ShelvesController" ng-init="results_list=[]">
     <div class="row">
         <div class="col-lg-8">
             <div class="input-group">
