@@ -14,6 +14,9 @@ angular.module('mean').config(['$routeProvider',
         when('/articles/:articleId', {
             templateUrl: 'views/articles/view.html'
         }).
+        when('/results/:title', {
+            templateUrl: 'views/search/results.html'
+        }).
         when('/', {
             templateUrl: 'views/index.html'
         }).
@@ -26,6 +29,6 @@ angular.module('mean').config(['$routeProvider',
 //Setting HTML5 Location Mode
 angular.module('mean').config(['$locationProvider',
     function($locationProvider) {
-        $locationProvider.hashPrefix("!");
+        $locationProvider.hashPrefix('!');
     }
 ]);
