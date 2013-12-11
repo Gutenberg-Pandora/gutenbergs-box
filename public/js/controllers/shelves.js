@@ -27,10 +27,6 @@ angular.module('mean.shelves').controller('ShelvesController',
 		});
     };
 
-    $scope.recommend = function() {
-        $location.path('results/' + this.title);  
-    };
-
     $scope.changeShelf = function(title) {
         $location.path('results/' + title);  
     };
