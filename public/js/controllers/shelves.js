@@ -12,8 +12,9 @@ angular.module('mean.shelves').controller('ShelvesController',
 
     $scope.create = function() {
 		Shelves.createShelf(this.title);
-		this.title = "";
-		this.content = "";
+		$location.path('results/' + this.title);  
+		//this.title = "";
+		//this.content = "";
     };
 
     $scope.delete = function() {
@@ -30,7 +31,7 @@ angular.module('mean.shelves').controller('ShelvesController',
         $location.path('results/' + this.title);  
     };
 
-    $scope.recommendSide = function(title) {
+    $scope.changeShelf = function(title) {
         $location.path('results/' + title);  
     };
 

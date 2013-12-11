@@ -5,7 +5,7 @@
     <div class="sidebar" data-ng-controller="ShelvesController" data-ng-init="find()">
      <ul>
         <li data-ng-repeat="shelf in shelves">
-            <a data-ng-click="recommendSide(shelf.title)">{{shelf.title}}</a>
+            <a data-ng-click="changeShelf(shelf.title)">{{shelf.title}}</a>
         </li>
     </ul>
     <h1 data-ng-hide="!shelves || shelves.length">No Shelves</h1>
