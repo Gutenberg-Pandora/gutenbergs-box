@@ -89,17 +89,42 @@ module.exports = function(app, passport, auth) {
     app.get('/recommend', function(req, res) {
         console.log(req.query);
         var title = req.query.title;
+        var swid = req.query.swid;
         var wc = new WorldCat();
         var less = true;
+        if (title) {
+            wc.recommend.byTitle(title, function (err, result) {
+                if (err) {
+                    res.jsonp(404);
+                }
+                else {
+                    res.jsonp(result);
+                }
+            }, less);
+        }
+        else if (swid) {
+            wc.recommend.byNumber(swid, function (err, result) {
+                if (err) {
+                    res.jsonp(404);
+                }
+                else {
+                    res.jsonp(result);
+                }
+            }, less);
+        }
         
-        wc.recommend.byTitle(title, function (err, result) {
+    });
+    app.get('/classify', function(req, res) {
+        console.log(req.query);
+        var wc = new WorldCat();
+        wc.classify.getAll(req.query, function (err, result) {
             if (err) {
                 res.jsonp(404);
             }
             else {
                 res.jsonp(result);
             }
-        }, less);
+        });
     });
 
     //Article Routes

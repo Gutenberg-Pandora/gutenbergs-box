@@ -37,5 +37,39 @@
         </div>
     </div>
 </div>
+<div class='container' data-ng-controller="SearchController" ng-init="results_list=[]">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="input-group">
+                 <input type="text" class="form-control" data-ng-model="swid" placeholder='Search' required>
+                    <span class="input-group-btn">
+                     <button class="btn btn-default" type="button" ng-click="classify(title)">Go!</button>
+                    </span>
+            </div><!-- /input-group -->
+        </div>
+    </div>
+     <div class="row">
+        <div class="col-lg-8">
+         <ul class="list-group media-list">
+             <li ng-repeat="result in results_list" class="list-group-item media">
+                <div class='media' id="book-data">
+                    <a class="pull-left" href="" ng-show="google_stats[result.ocn]">
+                        <img class="media-object" src={{google_stats[result.ocn].thumbnail_url}} alt="book thumbnail" data="http://books.google.com/googlebooks/images/no_cover_thumb.gif">
+                    </a>
+
+             <div class="media-body">
+                 <p><h4 class='media-heading'>Title</h4><span>{{result.title}}</span></p> 
+                  <p><h4 class='media-heading'>Author</h4><span>{{result.author}}</span></p> 
+                  <!--<p><h4 class='media-heading'>ocn</h4><span>{{result.ocn}}</span></p> 
+                  <p><h4 class='media-heading'>google_id</h4><span>{{google_stats[result.ocn].id}}</span></p>-->
+                  <p ng-show="google_stats[result.ocn]"><h4 class='media-heading'>Format</h4><span>{{result.format}}</span></p>
+                  <p><button ng-click="Search." type="button" class="btn btn-default navbar-btn">Preview</button></p>
+             </div>
+          </li>
+        </ul>
+        </div>
+        </div>
+    </div>
+</div>
 </div>
 </section>

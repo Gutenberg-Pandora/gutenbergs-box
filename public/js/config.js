@@ -20,7 +20,7 @@ angular.module('mean').config(['$routeProvider',
         when('/shelves/create', {
             templateUrl: '/views/shelves/create.html'
         }).        
-        when('/results/:title', {
+        when('/results/', {
             templateUrl: 'views/search/results.html'
         }).
         when('/', {

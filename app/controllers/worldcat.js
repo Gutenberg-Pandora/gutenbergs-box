@@ -2,8 +2,8 @@
     'use strict';
 
     var request = require('request');
-    var validator = require('validator');
-    var sanitize = validator.sanitize;
+    //var validator = require('validator');
+    //var sanitize = validator.sanitize;
     var parseString = require('xml2js').parseString;
 
     /**
@@ -34,13 +34,12 @@
      * @param callback
      * @return undefined
      */
-    WorldCat.prototype.classify = function(title, callback) {
-            title = sanitize(title).str;
-
-            var maxRecs = 1;
-            var summary = 'true';
-            var url = 'http://classify.oclc.org/classify2/Classify?' +
-                      'title=' + title + '&summary=' + summary + '&maxRecs=' + maxRecs;
+    WorldCat.prototype.classify =  {
+        grabFirst : function(params, callback) {
+            params.maxRecs = 1;
+            params.summary = 'true';
+            var url = 'http://classify.oclc.org/classify2/Classify';
+            console.log(params);
 
             var codes = {
                 good : {
@@ -92,8 +91,89 @@
                 }
             };
 
-            request.get(url, rcallback);
-        };
+            request.get({
+                'url': url,
+                'qs' : params
+            }, rcallback);
+        },
+
+        getAll : function (params, callback){
+            params.summary = 'false';
+            var url = 'http://classify.oclc.org/classify2/Classify';
+
+            var codes = {
+                good : {
+                    0 : 'Single-Work summary',
+                    2 : 'Single-work detail',
+                    4 : 'Multi-work response',
+                },
+                bad : {
+                    100 : 'No input',
+                    101 : 'Invalid input',
+                    102 : 'Not found',
+                    200 : 'Unexpected error'
+                }
+            };
+      
+            var rcallback = function(err, result) {
+                if (err) {
+                    console.log('there has been an error');
+                    console.log(err);
+                    callback(err, null);
+                }
+                else {
+                    var xml = result.body;
+                    var xcallback = function(err, result) {
+                        if (err) {
+                            console.log(err);
+                            callback(err, null);
+                        }
+                        else {
+                            var code = result.classify.response[0].$.code;
+                            if (code in codes.good) {
+                                var parseWork = function(work) {
+                                    var item = {
+                                        title : work.title,
+                                        author : work.author,
+                                        format : work.format,
+                                        swid : work.swid
+                                    };
+                                    return item;
+                                };
+                                var list = [];
+                                if (code === '0') {
+                                    var work = result.classify.work[0]._;
+                                    var item = parseWork(work);
+                                    list.push(item);
+                                }
+                                else if (code === '4') {
+                                    var works = result.classify.works[0].work;
+                                    works.forEach(function(work) {
+                                        work = work.$;
+                                        //console.log(work);
+                                        var item = parseWork(work);
+                                        list.push(item);
+                                    });
+                                }
+                                callback(null, list);
+                            }
+                            else {
+                                var serviceError = 'Service error: ' + codes.bad.code;
+                                callback(serviceError, null);
+                            }
+                        }
+                    };
+                      
+                    parseString(xml, xcallback);
+                }
+            };
+
+            request.get({
+                'url': url,
+                'qs' : params
+            }, rcallback);
+        }
+    };
 
     WorldCat.prototype.recommend = {
       /**
@@ -209,7 +289,7 @@
                 }
             };
 
-            WorldCat.prototype.classify(title, clasCallback);
+            WorldCat.prototype.classify.grabFirst({'title': title}, clasCallback);
         }
     };
 
