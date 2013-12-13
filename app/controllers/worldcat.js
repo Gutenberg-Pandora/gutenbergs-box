@@ -215,10 +215,22 @@
                             console.log(err);
                             callback(err, null);
                         }
+                        
+                        console.log(result);
+                        var badCode;
+                        var code;
+                        try {
+                            badCode = result.pages.response[0].$.code;
+                        }
+                        catch (e){
+                        }
+                        try {
+                            code = result.mlt.response[0].$.code;
+                        }
+                        catch (e){
+                        }
                       
-                        var code = result.mlt.response[0].$.code;
-                      
-                        if (code in codes.good) {
+                        if (code && code in codes.good) {
                             var list = result.mlt.likeItems[0].likeItem;
 
                             if (less) {
@@ -244,8 +256,9 @@
                             
                             callback(null, list);
                         }
-                        else {
-                            var serviceError = 'Service error: ' + codes.bad.code;
+                        else if (badCode){
+                            console.log(badCode);
+                            var serviceError = 'Service error: ' + codes.bad.badCode;
                             callback(serviceError, null);
                         }
                         
