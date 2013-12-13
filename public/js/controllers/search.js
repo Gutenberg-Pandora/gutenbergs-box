@@ -8,7 +8,7 @@ angular.module('mean.search').controller('SearchController',
                                              'Results',
                                              function ($scope, $log, $location, Global, Search, Results) {
 
-    $scope.recommend = function () {
+    $scope.recommend = function (swid) {
         var success = function(result) {
             Results.setRecommendResults(result);
             $location.path('results/');
@@ -20,9 +20,10 @@ angular.module('mean.search').controller('SearchController',
         };
 
         var query_params = {
-            'swid' : this.swid,
-            'title' : this.title
+            'swid' : swid,
         };
+
+        if (swid) { console.log(swid); }
         
         Search.recommend.get(query_params, success, error);
 

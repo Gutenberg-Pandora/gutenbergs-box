@@ -24,15 +24,23 @@ angular.module('mean.search').controller('ResultsController',
             var objname = 'OCLC:' + ocn;
             var robj = result[objname];
             $log.log(robj);
+            
+            if (!robj) {
+                return;
+            } 
+
             var t_url = robj.thumbnail_url;
+            
             if (t_url) {
                 robj.thumbnail_url = t_url.replace('zoom=5', 'zoom=1');
             }
             else {
                 robj.thumbnail_url = "http://books.google.com/googlebooks/images/no_cover_thumb.gif";
             }
+
             var idRe = /(id=[^&]*)/;
             var idstr = idRe.exec(robj.info_url);
+            
             robj.id = idstr[1].slice(3);
             
             robj.description = 'A book';//Remove for production
@@ -72,5 +80,6 @@ angular.module('mean.search').controller('ResultsController',
 
         GBooks.volume_info.get(query_params, success, error);
     };
+
 }]);
 
