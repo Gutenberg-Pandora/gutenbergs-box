@@ -5,8 +5,8 @@ angular.module('mean.shelves').factory("Shelves", ['$http', function($http) {
 		getShelves: function(callback) {
 			return $http.get('users/me/shelf').success(callback);
 		},
-		createShelf: function(title) {
-			return $http.put('users/me/shelf/' + title);
+		createShelf: function(title, swid) {
+			return $http.put('users/me/shelf/' + title + "/" + swid);
 		},
 		deleteShelf: function(shelfId) {
 			return $http.delete('users/me/shelf/' + shelfId);

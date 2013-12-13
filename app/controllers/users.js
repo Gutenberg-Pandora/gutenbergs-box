@@ -120,6 +120,24 @@ exports.title = function(req, res, next, title) {
 };
 
 /**
+ * Set title param
+ */
+exports.swid = function(req, res, next, swid) {
+    req.swid = swid;
+    next();
+};
+
+/**
+ * Show login form
+ */
+exports.searchModal = function(req, res) {
+    res.render('users/search', {
+        title: 'Signin',
+        message: req.flash('error')
+    });
+};
+
+/**
 * Get all shelves
 */
 exports.getShelves = function(req, res) {
@@ -152,21 +170,17 @@ exports.createShelf = function(req, res) {
     //var bookId = req.bookId;
     var shelves = user.shelves;
     var title = req.title;
+    var swid = req.swid;
+    var newShelf = {
+        title: title,
+        like: [swid],
+        dislike:[]
+    };
 
-    var WorldCat = require('./worldcat.js');
-    var wc = new WorldCat();
-    wc.classify(title, function(err, result){
-        var newShelf = {
-            title: title,
-            like: [result],
-            dislike:[]
-        };
+    shelves.push(newShelf);
 
-        shelves.push(newShelf);
-
-        User.update({_id: user._id},{$set: {shelves: shelves}}, function(err){
-            res.jsonp(shelves[shelves.length-1]);
-        });
+    User.update({_id: user._id},{$set: {shelves: shelves}}, function(err){
+        res.jsonp(shelves[shelves.length-1]);
     });
 };
 

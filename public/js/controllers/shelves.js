@@ -2,17 +2,18 @@ angular.module('mean.shelves').controller('ShelvesController',
 										['$scope', 
 										'$routeParams', 
 										'$location',
-										'$log', 
+										'$log',
+										'$route', 
 										'Global', 
 										'Shelves',
-										'GBooks',
-										'Search', 
-										function ($scope, $routeParams, $location, $log, Global, Shelves, GBooks, Search) {
+										'Search',
+										'Results', 
+										function ($scope, $routeParams, $location, $log, $route, Global, Shelves, Search, Results) {
     $scope.global = Global;
 
-    $scope.create = function() {
-		Shelves.createShelf(this.title);
-		$location.path('results/' + this.title);  
+    $scope.create = function(title, swid) {
+		Shelves.createShelf(title, swid);
+		this.changeShelf(swid);  
 		//this.title = "";
 		//this.content = "";
     };
@@ -27,8 +28,24 @@ angular.module('mean.shelves').controller('ShelvesController',
 		});
     };
 
-    $scope.changeShelf = function(title) {
-        $location.path('results/' + title);  
-    };
+    $scope.changeShelf = function(swid) {
+        //$location.path('results/' + title);  
+        var success = function(result) {
+            Results.setRecommendResults(result);
+            $route.reload();
+        };
+    
+        var error = function(result) {
+            $log.error('result failed');
+            $log.error(result);
+        };
 
+        var query_params = {
+            'swid' : swid,
+        };
+
+        if (swid) { console.log(swid); }
+        
+        Search.recommend.get(query_params, success, error);
+    };
 }]);

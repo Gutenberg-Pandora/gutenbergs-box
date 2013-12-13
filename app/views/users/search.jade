@@ -1,0 +1,29 @@
+extends ../layouts/modal
+
+block title
+	h2 Find a Book
+block content
+	.container(data-ng-controller="SearchController", ng-init="results_list=[]")
+		.row
+			.col-lg-8
+				.input-group
+					input(type="text" class="form-control" data-ng-model="title" placeholder='Search' required)
+					button(class="btn btn-default" type="button" ng-click="classify(title)").
+						Go!
+		ul(class = "list-group media-list")
+			li(ng-repeat="result in results_list", class="list-group-item media")
+				#book-data.media
+					a(href="", ng-show="google_stats[result.ocn]").pull-left
+						img()
+					.media-body
+						p
+							h4.media-heading {{result.title}}
+						p
+							h4.media-heading Author
+						p
+							h4.media-heading Format
+						p
+							h4.media-heading Title
+						p
+							button( data-ng-controller="ShelvesController" class="btn btn-default navbar-btn" type="button" ng-click="create(result.title,result.swid); cancel()").
+								This One!

@@ -22,10 +22,11 @@ module.exports = function(app, passport, auth) {
     app.del('/users/me/toread/:bookId',auth.requiresLogin, users.removeBook);
 
     //Setting up the Shelf routes
+    app.get('/searchModal', users.searchModal);
     app.get('/users/me/shelf',auth.requiresLogin, users.getShelves);
 
     app.get('/users/me/shelf/:shelfId',auth.requiresLogin, users.getShelf);
-    app.put('/users/me/shelf/:title',auth.requiresLogin, users.createShelf);
+    app.put('/users/me/shelf/:title/:swid',auth.requiresLogin, users.createShelf);
     app.del('/users/me/shelf/:shelfId',auth.requiresLogin, users.removeShelf);
 
     app.get('/users/me/shelf/:shelfId/like',auth.requiresLogin, users.getLike);
@@ -83,6 +84,7 @@ module.exports = function(app, passport, auth) {
     app.param('bookId', users.bookId);
     app.param('title', users.title);
     app.param('shelfId', users.shelfId);
+    app.param('swid', users.swid);
 
     //WorldCat Routes
     var WorldCat = require('../app/controllers/worldcat');
