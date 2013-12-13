@@ -10,15 +10,13 @@
           </button>
           <a class="navbar-brand" href="#">Project Gutenberg</a>
         </div>
-        <div class="collapse navbar-collapse"  data-ng-hide="global.authenticated">
-            <ul class="nav navbar-nav navbar-right">
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right"  data-ng-hide="global.authenticated">
                 <li><a href="" ng-controller="ModalDemoCtrl" ng-click="open()">Sign in</a></li>
           </ul>  
-          </div>
-        <div class="collapse navbar-collapse" data-ng-show="global.authenticated">
-	     <ul class="nav navbar-nav navbar-right">
+	    <ul class="nav navbar-nav navbar-right" data-ng-show="global.authenticated">
                 <li><a href="/signout">Sign Out</a></li>
-          </ul>  
+          </ul> 
           </div>
         </div><!--/.nav-collapse -->
       </div>
