@@ -30,8 +30,12 @@ footer p {
 
 .modal-dialog {
     width: 30%;
+}
+
+.modal-header {
     text-align: center;
 }
+
 .navbar-inverse {
 background-color: #FFF;
 border-color: #FFF;

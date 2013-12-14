@@ -12,10 +12,13 @@ html(lang='en', xmlns='http://www.w3.org/1999/xhtml', xmlns:fb='https://www.face
 								&times;
 							.modal-title
 								h2 Find a Book
-								.input-group(style="margin-right:auto;margin-left:auto")
-									input(type="text" class="form-control" data-ng-model="title" placeholder='Search' required)
-									button(class="btn btn-default" type="button" ng-click="classify(title)").
-										Go!
+								.row
+									.col-lg-8.col-lg-offset-2
+										.input-group(style="margin-right:auto;margin-left:auto;text-align:center")
+											input(type="text" class="form-control" data-ng-model="title" placeholder='Search' required)
+											.input-group-btn	
+												button(class="btn btn-default" type="button" ng-click="classify(title)").
+													Go!
 						.modal-body
 							.container()
 								.row
