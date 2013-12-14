@@ -1,29 +1,41 @@
-extends ../layouts/modal
 
-block title
-	h2 Find a Book
-block content
-	.container(data-ng-controller="SearchController", ng-init="results_list=[]")
-		.row
-			.col-lg-8
-				.input-group
-					input(type="text" class="form-control" data-ng-model="title" placeholder='Search' required)
-					button(class="btn btn-default" type="button" ng-click="classify(title)").
-						Go!
-		ul(class = "list-group media-list")
-			li(ng-repeat="result in results_list", class="list-group-item media")
-				#book-data.media
-					a(href="", ng-show="google_stats[result.ocn]").pull-left
-						img()
-					.media-body
-						p
-							h4.media-heading {{result.title}}
-						p
-							h4.media-heading Author
-						p
-							h4.media-heading Format
-						p
-							h4.media-heading Title
-						p
-							button( data-ng-controller="ShelvesController" class="btn btn-default navbar-btn" type="button" ng-click="create(result.title,result.swid); cancel()").
-								This One!
+!!! 5
+html(lang='en', xmlns='http://www.w3.org/1999/xhtml', xmlns:fb='https://www.facebook.com/2008/fbml', itemscope='itemscope', itemtype='http://schema.org/Product')
+	include ../includes/head
+	body
+		section.content
+			section.container
+				.modal-dialog(data-ng-controller="SearchController", ng-init="results_list=[]" style="margin:0;width:1100px")
+					.modal-content(style="")
+						.modal-header
+							button(type="button" class="close" ng-click="cancel()")
+								&times;
+							.modal-title
+								h2 Find a Book
+								.input-group(style="margin-right:auto;margin-left:auto")
+									input(type="text" class="form-control" data-ng-model="title" placeholder='Search' required)
+									button(class="btn btn-default" type="button" ng-click="classify(title)").
+										Go!
+						.modal-body
+							.container()
+								.row
+									.col-lg-8
+								ul(class = "list-group media-list" style="width:1000px")
+									li(ng-repeat="result in results_list", class="list-group-item media")
+										#book-data.media
+											a(href="", ng-show="google_stats[result.ocn]").pull-left
+												img(src="{{google_stats[result.ocn].thumbnail_url}}" alt="book thumbnail" data="http://books.google.com/googlebooks/images/no_cover_thumb.gif").media-object
+											.media-body
+												p
+													h4.media-heading Title
+													span {{result.title}}
+												p
+													h4.media-heading Author
+													span {{result.author}}
+												p
+													h4.media-heading Format
+													span {{result.format}}
+												p
+													button( data-ng-controller="ShelvesController" class="btn btn-default navbar-btn" type="button" ng-click="create(result.title,result.swid); cancel()").
+														This One!
+		include ../includes/foot
