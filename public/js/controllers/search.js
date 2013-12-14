@@ -10,7 +10,7 @@ angular.module('mean.search').controller('SearchController',
 
     $scope.recommend = function (sn) {
         var success = function(result) {
-            console.log(result.length);
+            console.log(result);
             if (result.length === 0) {
                 $scope.failed[sn] = true;
                 console.log($scope.failed);

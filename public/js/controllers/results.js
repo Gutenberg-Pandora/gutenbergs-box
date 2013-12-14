@@ -10,13 +10,12 @@ angular.module('mean.search').controller('ResultsController',
                                              function ($scope, $log, $routeParams, Global, Search, Results, GBooks) {
 
     $scope.update = function() {
-        var result = Results.getRecommendResults();
+        $scope.results_list = Results.getRecommendResults();
         $scope.google_stats = {};
-        for (var i = 0; i < result.length; i++) {
-            $scope.get_links(result[i].ocn);
-            result[i].title = result[i].title.replace('/', '');
+        for (var i = 0; i < $scope.results_list.length; i++) {
+            $scope.get_links($scope.results_list[i].ocn);
+            $scope.results_list[i].title = $scope.results_list[i].title.replace('/', '');
         }
-        $scope.results_list = result;
     };
     
     $scope.get_links = function(ocn) {
@@ -27,7 +26,7 @@ angular.module('mean.search').controller('ResultsController',
             
             if (!robj) {
                 return;
-            } 
+            }
 
             var t_url = robj.thumbnail_url;
             
@@ -35,7 +34,7 @@ angular.module('mean.search').controller('ResultsController',
                 robj.thumbnail_url = t_url.replace('zoom=5', 'zoom=1');
             }
             else {
-                robj.thumbnail_url = "http://books.google.com/googlebooks/images/no_cover_thumb.gif";
+                robj.thumbnail_url = 'http://books.google.com/googlebooks/images/no_cover_thumb.gif';
             }
 
             var idRe = /(id=[^&]*)/;
@@ -80,6 +79,21 @@ angular.module('mean.search').controller('ResultsController',
 
         GBooks.volume_info.get(query_params, success, error);
     };
+
+    $scope.$on($scope.$destroy, function() {
+        if ($scope.listening) {
+            Results.unregister(index);
+        }
+    });
+    
+    if (!$scope.listening) {
+        var index = Results.register('ResultsPage', function() {
+            $scope.update();
+        });
+        $scope.listening = {
+            'index' : index
+        };
+    }
 
 }]);
 

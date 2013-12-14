@@ -1,26 +1,40 @@
 //Search service used for recommender REST endpoint
 angular.module('mean.search').factory('Results', ['$log', function($log) {
     
-    var recommendResults = []; 
-    var classifyResults = []; 
 
     var resultsService = {
         getRecommendResults : function() {
-            return recommendResults;
+            return this.recommendResults;
         },
         
-        setRecommendResults : function(data) { 
-            recommendResults = data;
+        setRecommendResults : function(data) {
+            this.recommendResults = data;
+            for (var listener in this.rec_listeners) {
+                this.rec_listeners[listener]();
+            }
         },
 
         getClassifyResults : function() {
-            return classifyResults;
+            return this.classifyResults;
         },
 
         setClassifyResults : function(data) {
-            classifyResults = data;
-        }
+            this.classifyResults = data;
+        },
 
+        register : function (listener, handler) {
+            this.rec_listeners[listener] = handler;
+        },
+        
+        unregister : function (listener) {
+            delete this.rec_listeners[listener];
+        },
+
+        recommendResults : [],
+        
+        classifyResults : [],
+
+        rec_listeners : {}
     };
     //http://stackoverflow.com/a/12009408
     
