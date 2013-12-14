@@ -28,7 +28,13 @@ html(lang='en', xmlns='http://www.w3.org/1999/xhtml', xmlns:fb='https://www.face
 										#book-data.media
 											a(href="", ng-show="google_stats[result.ocn]").pull-left
 												img(src="{{google_stats[result.ocn].thumbnail_url}}" alt="book thumbnail" data="http://books.google.com/googlebooks/images/no_cover_thumb.gif").media-object
-											.media-body
+											.media-body(ng-init="failed={}")
+												p	
+													.page-header(ng-show="failed[result.swid]")
+														h3(class="media-heading").
+															Our Apologies
+														small.
+															We couldn't find any recommendations for this item
 												p
 													h4.media-heading Title
 													span {{result.title}}

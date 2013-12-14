@@ -61,6 +61,7 @@ max-width: 128;
 }
 
 .sidebar{
+    position: fixed;
     max-width: 25%;
     float: left;
 }

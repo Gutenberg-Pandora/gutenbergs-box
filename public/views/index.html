@@ -26,11 +26,12 @@
                         <img class="media-object" src={{google_stats[result.ocn].thumbnail_url}} alt="book thumbnail" data="http://books.google.com/googlebooks/images/no_cover_thumb.gif">
                     </a>
 
-             <div class="media-body">
+             <div class="media-body" ng-init="failed={}">
+                  <p><div class="page-header" ng-show="failed[result.swid]"><h3 class='media-heading'>Our Apologies</h3><small>We couldn't find any recommendations for this item</small></div></p>
                  <p><h4 class='media-heading'>Title</h4><span>{{result.title}}</span></p> 
                   <p><h4 class='media-heading'>Author</h4><span>{{result.author}}</span></p> 
                   <p><h4 class='media-heading'>Format</h4><span>{{result.format}}</span></p>
-                  <p><button data-ng-controller="SearchController" class="btn btn-default navbar-btn" type="button" ng-click="recommend(result.swid)">This One!</button></p>
+                  <p ng-hide="failed[result.swid]"><button data-ng-controller="SearchController" class="btn btn-default navbar-btn" type="button" ng-click="recommend(result.swid)">This One!</button></p>
              </div>
           </li>
         </ul>

@@ -8,8 +8,14 @@ angular.module('mean.search').controller('SearchController',
                                              'Results',
                                              function ($scope, $log, $location, Global, Search, Results) {
 
-    $scope.recommend = function (swid) {
+    $scope.recommend = function (sn) {
         var success = function(result) {
+            console.log(result.length);
+            if (result.length === 0) {
+                $scope.failed[sn] = true;
+                console.log($scope.failed);
+                return;
+            }
             Results.setRecommendResults(result);
             $location.path('results/');
         };
@@ -20,10 +26,10 @@ angular.module('mean.search').controller('SearchController',
         };
 
         var query_params = {
-            'swid' : swid,
+            'sn' : sn
         };
 
-        if (swid) { console.log(swid); }
+        if (sn) { console.log(sn); }
         
         Search.recommend.get(query_params, success, error);
 

@@ -1,7 +1,7 @@
 <h1 class='page-header'>Recommendations For You</h1>
 
     <div class="sidebar" data-ng-controller="ShelvesController" data-ng-init="find()">
-        <h3>Shelves</h3>
+        <h3 class='page-header'>Shelves</h3>
          <ul class="list-group media-list">
             <li data-ng-repeat="shelf in shelves">
                 <a data-ng-click="changeShelf(shelf.like[0])" class="list-group-item media" style="Cursor: Pointer">{{shelf.title}}</a>
@@ -15,7 +15,7 @@
 
 <div class='mainBody' data-ng-controller="ResultsController" ng-init="update()">
     <div class="row">
-        <div class="col-lg-8">
+        <div class="col-lg-10">
             <ul class="list-group media-list">
                 <div ng-show="results_list.length==0">
                     Loading...
@@ -30,6 +30,7 @@
                             <p><h4 class='media-heading'>Title</h4><span>{{result.title}}</span></p> 
                             <p><h4 class='media-heading'>Author</h4><span>{{result.author}}</span></p> 
                             <p ng-show="google_stats[result.ocn]"><h4 class='media-heading'>Description</h4><div ng-bind-html-unsafe="google_stats[result.ocn].description"></div></p>
+                            <p><span>{{failed[result.swid]}}</span></p>
                             <p ng-show="google_stats[result.ocn]"><button onclick="window.open('{{google_stats[result.ocn].preview_url}}')" type="button" class="btn btn-default navbar-btn">Preview</button></p>
                         </div>
                         </li>

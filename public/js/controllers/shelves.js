@@ -28,9 +28,17 @@ angular.module('mean.shelves').controller('ShelvesController',
 		});
     };
 
-    $scope.changeShelf = function(swid) {
+    $scope.changeShelf = function(sn) {
         //$location.path('results/' + title);  
         var success = function(result) {
+            console.log(result);
+            console.log(result.length);
+            if (result.length === 0) {
+                $scope.failed[sn] = true;
+                console.log($scope.failed);
+                return;
+            }
+
             Results.setRecommendResults(result);
             $route.reload();
         };
@@ -41,10 +49,10 @@ angular.module('mean.shelves').controller('ShelvesController',
         };
 
         var query_params = {
-            'swid' : swid,
+            'sn' : sn,
         };
 
-        if (swid) { console.log(swid); }
+        if (sn) { console.log(sn); }
         
         Search.recommend.get(query_params, success, error);
     };

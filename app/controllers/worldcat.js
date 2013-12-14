@@ -216,7 +216,6 @@
                             callback(err, null);
                         }
                         
-                        console.log(result);
                         var badCode;
                         var code;
                         try {

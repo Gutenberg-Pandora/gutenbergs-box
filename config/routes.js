@@ -91,7 +91,7 @@ module.exports = function(app, passport, auth) {
     app.get('/recommend', function(req, res) {
         console.log(req.query);
         var title = req.query.title;
-        var swid = req.query.swid;
+        var sn = req.query.sn;
         var wc = new WorldCat();
         var less = true;
         if (title) {
@@ -104,8 +104,8 @@ module.exports = function(app, passport, auth) {
                 }
             }, less);
         }
-        else if (swid) {
-            wc.recommend.byNumber(swid, function (err, result) {
+        else if (sn) {
+            wc.recommend.byNumber(sn, function (err, result) {
                 if (err) {
                     res.jsonp(404);
                 }
