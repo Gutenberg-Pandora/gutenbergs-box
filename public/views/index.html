@@ -1,43 +1,43 @@
 <section data-ng-controller="IndexController">
 <div class='page-header'>
-<h2>Select a Book to Begin</h2>
+    <h2>Select a Book to Begin</h2>
 </div>
 <div class='panel'>
-<div class='container' data-ng-controller="SearchController" ng-init="results_list=[]">
-    <div class="row">
-        <div class="col-lg-8">
-            <div class="input-group">
-                 <input type="text" class="form-control" data-ng-model="title" placeholder='Search' required>
+    <div class='container' data-ng-controller="SearchController" ng-init="results_list=[]">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="input-group">
+                    <input type="text" class="form-control" data-ng-model="title" placeholder='Search' required>
                     <span class="input-group-btn">
-                     <button class="btn btn-default" type="button" ng-click="classify(title)">Go!</button>
+                        <button class="btn btn-default" type="button" ng-click="classify(title)">Go!</button>
                     </span>
-            </div><!-- /input-group -->
+                </div><!-- /input-group -->
+            </div>
         </div>
-    </div>
-<div class='page-header' ng-show="results_list">
-    <h3>Choose Your Book From the List Below</h3>
-</div>
-     <div class="row">
-        <div class="col-lg-8">
-         <ul class="list-group media-list">
-             <li ng-repeat="result in results_list" class="list-group-item media">
-                <div class='media' id="book-data">
-                    <a class="pull-left" href="" ng-show="google_stats[result.ocn]">
-                        <img class="media-object" src={{google_stats[result.ocn].thumbnail_url}} alt="book thumbnail" data="http://books.google.com/googlebooks/images/no_cover_thumb.gif">
-                    </a>
+        <div class='page-header' ng-show="results_list">
+            <h3>Choose Your Book From the List Below</h3>
+        </div>
+        <div class="row">
+            <div class="col-lg-8">
+                <ul class="list-group media-list">
+                    <li ng-repeat="result in results_list" class="list-group-item media">
+                    <div class='media' id="book-data">
+                        <a class="pull-left" href="" ng-show="google_stats[result.ocn]">
+                            <img class="media-object" src={{google_stats[result.ocn].thumbnail_url}} alt="book thumbnail" data="http://books.google.com/googlebooks/images/no_cover_thumb.gif">
+                        </a>
 
-             <div class="media-body" ng-init="failed={}">
-                  <p><div class="page-header" ng-show="failed[result.swid]"><h3 class='media-heading'>Our Apologies</h3><small>We couldn't find any recommendations for this item</small></div></p>
-                 <p><h4 class='media-heading'>Title</h4><span>{{result.title}}</span></p> 
-                  <p><h4 class='media-heading'>Author</h4><span>{{result.author}}</span></p> 
-                  <p><h4 class='media-heading'>Format</h4><span>{{result.format}}</span></p>
-                  <p ng-hide="failed[result.swid]"><button data-ng-controller="SearchController" class="btn btn-default navbar-btn" type="button" ng-click="recommend(result.swid)">This One!</button></p>
-             </div>
-          </li>
-        </ul>
-        </div>
+                        <div class="media-body" ng-init="failed={}">
+                            <p><div class="page-header" ng-show="failed[result.swid]"><h3 class='media-heading'>Our Apologies</h3><small>We couldn't find any recommendations for this item</small></div></p>
+                            <p><h4 class='media-heading'>Title</h4><span>{{result.title}}</span></p> 
+                            <p><h4 class='media-heading'>Author</h4><span>{{result.author}}</span></p> 
+                            <p><h4 class='media-heading'>Format</h4><span>{{result.format}}</span></p>
+                            <p ng-hide="failed[result.swid]"><button data-ng-controller="SearchController" class="btn btn-default navbar-btn" type="button" ng-click="recommend(result.swid)">This One!</button></p>
+                        </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
-</div>
 </div>
 </section>

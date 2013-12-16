@@ -80,19 +80,23 @@ angular.module('mean.search').controller('ResultsController',
         GBooks.volume_info.get(query_params, success, error);
     };
 
+    $scope.listening_tag = 'ResultsPage';
+
     $scope.$on($scope.$destroy, function() {
         if ($scope.listening) {
-            Results.unregister(index);
+            Results.unregister($scope.listening_tag);
+            $scope.listening = false;
         }
     });
     
     if (!$scope.listening) {
-        var index = Results.register('ResultsPage', function() {
+        Results.register($scope.listening_tag, function() {
+            if (Results.recFailed())  {
+ //               $scope.failed[Results.getSN()] = true;
+            }
             $scope.update();
         });
-        $scope.listening = {
-            'index' : index
-        };
+        $scope.listening = true;
     }
 
 }]);

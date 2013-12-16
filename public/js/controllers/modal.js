@@ -1,79 +1,52 @@
-var ModalDemoCtrl = function ($scope, $modal, $log) {
+var AuthModalInstanceCtrl = function ($scope, $modalInstance) {
+  
+    $scope.ok = function () {
+        $modalInstance.close($scope.selected.item);
+    };
 
-  $scope.items = ['item1', 'item2', 'item3'];
-
-  $scope.open = function () {
-
-    var modalInstance = $modal.open({
-      templateUrl: '/signin',
-      controller: ModalInstanceCtrl,
-      resolve: {
-        items: function () {
-          return $scope.items;
-        }
-      }
-    });
-
-    modalInstance.result.then(function (selectedItem) {
-      $scope.selected = selectedItem;
-    }, function () {
-      $log.info('Modal dismissed at: ' + new Date());
-    });
-  };
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
 };
 
-var ModalInstanceCtrl = function ($scope, $modalInstance, items) {
+var AuthModalCtrl = function ($scope, $modal, $log) {
+  
+    $scope.open = function () {
 
-  $scope.items = items;
-  $scope.selected = {
-    item: $scope.items[0]
-  };
+        var modalInstance = $modal.open({
+            templateUrl: '/signin',
+            controller: AuthModalInstanceCtrl
+        });
+    };
+};
 
-  $scope.ok = function () {
-    $modalInstance.close($scope.selected.item);
-  };
+var SearchModalInstanceCtrl = function ($scope, $modalInstance, Results) {
 
-  $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
-  };
+    $scope.ok = function () {
+        $modalInstance.close();
+    };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
 };
 
 var SearchModalCtrl = function ($scope, $modal, $log) {
 
-  $scope.items = ['item1', 'item2', 'item3'];
 
-  $scope.open = function () {
+    $scope.open = function () {
 
-    var modalInstance = $modal.open({
-      templateUrl: '/searchModal',
-      controller: SearchModalInstanceCtrl,
-      resolve: {
-        items: function () {
-          return $scope.items;
-        }
-      }
-    });
+        var modalInstance = $modal.open({
+            templateUrl: '/searchModal',
+            controller: SearchModalInstanceCtrl,
+            resolve: {
+            }
+        });
 
-    modalInstance.result.then(function (selectedItem) {
-      $scope.selected = selectedItem;
-    }, function () {
-      $log.info('Modal dismissed at: ' + new Date());
-    });
-  };
-};
-
-var SearchModalInstanceCtrl = function ($scope, $modalInstance, items) {
-
-  $scope.items = items;
-  $scope.selected = {
-    item: $scope.items[0]
-  };
-
-  $scope.ok = function () {
-    $modalInstance.close($scope.selected.item);
-  };
-
-  $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
-  };
+        modalInstance.result.then(function (selectedItem) {
+            $scope.selected = selectedItem;
+        }, function () {
+            $log.info('Modal dismissed at: ' + new Date());
+        });
+    };
 };

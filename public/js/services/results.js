@@ -3,6 +3,14 @@ angular.module('mean.search').factory('Results', ['$log', function($log) {
     
 
     var resultsService = {
+        setSN : function(sn) {
+            this.sn = sn;
+        },
+
+        getSN : function() {
+            return this.sn;
+        },
+
         getRecommendResults : function() {
             return this.recommendResults;
         },
@@ -12,6 +20,10 @@ angular.module('mean.search').factory('Results', ['$log', function($log) {
             for (var listener in this.rec_listeners) {
                 this.rec_listeners[listener]();
             }
+        },
+
+        recFailed : function() {
+            return this.recommendResults.length === 0;
         },
 
         getClassifyResults : function() {
@@ -29,6 +41,8 @@ angular.module('mean.search').factory('Results', ['$log', function($log) {
         unregister : function (listener) {
             delete this.rec_listeners[listener];
         },
+
+        sn : -1,
 
         recommendResults : [],
         

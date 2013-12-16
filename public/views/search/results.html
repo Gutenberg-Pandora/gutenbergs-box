@@ -7,46 +7,46 @@
     <div class="row">
         <div class="col-lg-2"  style="position:fixed" data-ng-controller="ShelvesController" data-ng-init="find()">
             <h3 class='page-header'>Shelves</h3>
-             <ul class="navbar navbar-default list-group media-list" role="navigation" style="background-color:#FFF">
+            <ul class="navbar navbar-default list-group media-list" role="navigation" style="background-color:#FFF">
                 <li data-ng-repeat="shelf in shelves" class="list-group-item media">
-                    <a href="" class="navbar-link" data-ng-click="changeShelf(shelf.like[0])" style="Cursor: Pointer">{{shelf.title}}</a>
+                <a href="" class="navbar-link" data-ng-click="changeShelf(shelf.like[0])" style="Cursor: Pointer">{{shelf.title}}</a>
                 </li>
                 <li>
                 <p class="navbar-text" class="list-group-item media">
-                    <a href="" class="navbar-link" ng-controller="SearchModalCtrl" ng-click="open()">Create New Shelf</a>
-                    </p>
+                <a href="" class="navbar-link" ng-controller="SearchModalCtrl" ng-click="open()">Create New Shelf</a>
+                </p>
                 </li>
             </ul>
             <h4 data-ng-hide="!shelves || shelves.length">You have no shelves</h1>
         </div>
         <div>
         </div>
-        
-        <div class="row">
-<div class='mainBody' data-ng-controller="ResultsController" ng-init="update()">
-        <div class="col-lg-10 col-lg-offset-1">
-            <ul class="list-group media-list">
-                <div ng-show="results_list.length==0">
-                    Loading...
-                </div>
-                <li ng-repeat="result in results_list" class="list-group-item media">
-                    <div class='media' id="book-data">
-                        <a class="pull-left" href="" ng-show="google_stats[result.ocn]">
-                            <img class="media-object" src={{google_stats[result.ocn].thumbnail_url}} alt="book thumbnail" width="128" border="1">
-                        </a>
 
-                        <div class="media-body">
-                            <p><h4 class='media-heading'>Title</h4><span>{{result.title}}</span></p> 
-                            <p><h4 class='media-heading'>Author</h4><span>{{result.author}}</span></p> 
-                            <p ng-show="google_stats[result.ocn]"><h4 class='media-heading'>Description</h4><div ng-bind-html-unsafe="google_stats[result.ocn].description"></div></p>
-                            <p ng-show="google_stats[result.ocn]"><button onclick="window.open('{{google_stats[result.ocn].preview_url}}')" type="button" class="btn btn-default navbar-btn">Preview</button>
-                            <button ng-controller="SearchController" ng-click="recommend(result.ocn)" type="button" class="btn btn-default navbar-btn">Like It</button></p>
+        <div class="row">
+            <div class='mainBody' data-ng-controller="ResultsController" ng-init="update()">
+                <div class="">
+                    <ul class="col-lg-8 col-lg-offset-1 list-group media-list">
+                        <div ng-show="results_list.length==0">
+                            Loading...
                         </div>
-                        </li>
-         </ul>
+                        <li ng-repeat="result in results_list" class="list-group-item media">
+                        <div class='media' id="book-data">
+                            <a class="pull-left" href="" ng-show="google_stats[result.ocn]">
+                                <img class="media-object" src={{google_stats[result.ocn].thumbnail_url}} alt="book thumbnail" width="128" border="1">
+                            </a>
+
+                            <div class="media-body">
+                                <p><h4 class='media-heading'>Title</h4><span>{{result.title}}</span></p> 
+                                <p><h4 class='media-heading'>Author</h4><span>{{result.author}}</span></p> 
+                                <p ng-show="google_stats[result.ocn]"><h4 class='media-heading'>Description</h4><div ng-bind-html-unsafe="google_stats[result.ocn].description"></div></p>
+                                <p ng-show="google_stats[result.ocn]"><button onclick="window.open('{{google_stats[result.ocn].preview_url}}')" type="button" class="btn btn-default navbar-btn">Preview</button>
+                                <button ng-controller="SearchController" ng-click="recommend(result.ocn)" type="button" class="btn btn-default navbar-btn">Like It</button></p>
+                            </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    </div>
-</div>
 </div>

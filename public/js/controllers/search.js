@@ -11,12 +11,15 @@ angular.module('mean.search').controller('SearchController',
     $scope.recommend = function (sn) {
         var success = function(result) {
             console.log(result);
-            if (result.length === 0) {
-                $scope.failed[sn] = true;
-                console.log($scope.failed);
+            //if (result.length === 0) {
+            //    $scope.failed[sn] = true;
+            //    console.log($scope.failed);
+            //    return;
+            //}
+            Results.setRecommendResults(result);
+            if (Results.failed) {
                 return;
             }
-            Results.setRecommendResults(result);
             $location.path('results/');
         };
     
@@ -31,6 +34,7 @@ angular.module('mean.search').controller('SearchController',
 
         if (sn) { console.log(sn); }
         
+        Results.setSN(sn);
         Search.recommend.get(query_params, success, error);
 
     };
