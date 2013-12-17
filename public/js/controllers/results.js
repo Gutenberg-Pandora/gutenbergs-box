@@ -42,11 +42,11 @@ angular.module('mean.search').controller('ResultsController',
             
             robj.id = idstr[1].slice(3);
             
-            robj.description = 'A book';//Remove for production
+            //robj.description = 'A book';//Remove for production
             
             $scope.google_stats[ocn] = robj;
              
-            //$scope.get_info(robj.id, ocn); //Uncomment for production
+            $scope.get_info(robj.id, ocn); //Uncomment for production
         };
 
         var error = function(result) {
