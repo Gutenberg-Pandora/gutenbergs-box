@@ -11,12 +11,10 @@
                 <li data-ng-repeat="shelf in shelves" class="list-group-item media">
                 <a href="" class="navbar-link" data-ng-click="changeShelf(shelf.like[0])" style="Cursor: Pointer">{{shelf.title}}</a>
                 </li>
-                <li>
-                <p class="navbar-text" class="list-group-item media">
-                <a href="" class="navbar-link" ng-controller="SearchModalCtrl" ng-click="open()">Create New Shelf</a>
-                </p>
-                </li>
             </ul>
+            <p class="navbar-text">
+            <button class="btn btn-default navbar-link" ng-controller="SearchModalCtrl" ng-click="open()">Create New Shelf</button>
+            </p>
             <h4 data-ng-hide="!shelves || shelves.length">You have no shelves</h1>
         </div>
         <div>
@@ -27,7 +25,7 @@
                 <div class="">
                     <ul class="col-lg-8 col-lg-offset-1 list-group media-list">
                         <div ng-show="results_list.length==0">
-                            Loading...
+                            <h4>Please Select or Create A Shelf</h4>
                         </div>
                         <li ng-repeat="result in results_list" class="list-group-item media">
                         <div class='media' id="book-data">
