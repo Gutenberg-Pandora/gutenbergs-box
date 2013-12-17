@@ -71,7 +71,12 @@ angular.module('mean.shelves').controller('ShelvesController',
                         $scope.failed[Results.getSN()] = true;
                         return;
                     }
-                    $scope.cancel();
+                    try {
+                        $scope.cancel()
+                    }
+                    catch(e) {
+                    }
+                    
                     $route.reload();
                 });
     };
