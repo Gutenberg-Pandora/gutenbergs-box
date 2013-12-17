@@ -98,6 +98,7 @@ angular.module('mean.search').controller('ResultsController',
         });
         $scope.listening = true;
     }
+    $scope.global = Global;
 
 }]);
 
