@@ -56,5 +56,6 @@ angular.module('mean.search').controller('SearchController',
         Search.classify.get(query_params, success, error);
     
     };
+    $scope.global = Global;
     
 }]);
