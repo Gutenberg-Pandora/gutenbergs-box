@@ -7,14 +7,12 @@
     <div class="row" data-ng-controller="SearchController">
         <div class="col-lg-2"  style="position:fixed" data-ng-controller="ShelvesController" data-ng-init="find()">
             <h3 class='page-header'>Shelves</h3>
-            <ul class="navbar navbar-default list-group media-list" role="navigation" style="background-color:#FFF">
-                <li data-ng-repeat="shelf in shelves" class="list-group-item media">
-                <a href="" class="navbar-link" data-ng-click="changeShelf(shelf.like[0])" style="Cursor: Pointer">{{shelf.title}}</a>
+            <ul class="list-group" role="navigation" style="background-color:#FFF">
+                <li data-ng-repeat="shelf in shelves" class="btn btn-default list-group-item" data-ng-click="changeShelf(shelf.like[0])">
+                <p style="white-space:normal">{{shelf.title}}</p>
                 </li>
             </ul>
-            <p class="navbar-text">
-            <button class="btn btn-default navbar-link" ng-controller="SearchModalCtrl" ng-click="open()">Create New Shelf</button>
-            </p>
+            <button class="btn btn-default" ng-controller="SearchModalCtrl" ng-click="open()">Create New Shelf</button>
             <h4 data-ng-hide="!shelves || shelves.length">You have no shelves</h1>
         </div>
         <div>
