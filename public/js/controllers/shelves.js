@@ -72,7 +72,7 @@ angular.module('mean.shelves').controller('ShelvesController',
                         return;
                     }
                     try {
-                        $scope.cancel()
+                        $scope.cancel();
                     }
                     catch(e) {
                     }
